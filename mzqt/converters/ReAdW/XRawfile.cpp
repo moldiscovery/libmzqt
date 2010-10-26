@@ -2,6 +2,11 @@
  XRawfile.cpp
  Created on: 02/08/2010
  Author: Fabien Fontaine
+
+ Access Thermo RAW files through XRawfile2.dll and COM. For
+ more details about how to get and use the Thermo library go to:
+ http://sjsupport.thermofinnigan.com/public/detail.asp?id=586
+
  Copyright (C) 2010 Lead Molecular Design Sl
  
  This library is free software; you can redistribute it and/or
@@ -17,6 +22,7 @@
  You should have received a copy of the GNU Lesser General Public
  License along with this library; if not, write to the Free Software
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
  */
 
 #include <iostream>
@@ -75,11 +81,11 @@ bool XRawfile::init(const QString &component)
       result = false;
     }
   }
-  else if (setComponent("XRawfile.XRawfile.1") == true) {
-    Debug::msg() << "Xcalibur 2.0 interface initialized.";
-  }
   else if (setComponent("MSFileReader.XRawfile.1") == true) {
     Debug::msg() << "MSFileReader interface initialized.";
+  }
+  else if (setComponent("XRawfile.XRawfile.1") == true) {
+    Debug::msg() << "Xcalibur 2.0 interface initialized.";
   }
   else {
     //throw something because nothing has been initialized?

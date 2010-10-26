@@ -62,10 +62,3 @@ memory_check_mmgr {
     SOURCES += ./mmgr/mmgr.cpp
 }
 
-memory_check_google { 
-    QMAKE_CXXFLAGS += -fno-builtin-malloc -fno-builtin-calloc 
-    QMAKE_CXXFLAGS += -fno-builtin-realloc -fno-builtin-free
-    LIBS += -L/usr/local/lib 
-    LIBS += -ltcmalloc_minimal
-}
-
