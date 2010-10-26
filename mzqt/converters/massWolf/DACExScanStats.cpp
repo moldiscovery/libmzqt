@@ -4,6 +4,10 @@
  Author: Fabien Fontaine
  Copyright (C) 2010 Lead Molecular Design Sl
  
+ Access MassLynx raw files through the Datafile Access Component (DAC). For
+ more details about how to get and use the DAC library go to:
+ www.waters.com/webassets/cms/support/docs/71500123505ra.pdf
+
  This library is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
  License as published by the Free Software Foundation; either
