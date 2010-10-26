@@ -1,0 +1,108 @@
+In order to compile MZQt you need a valid installation of Qt 4.5 or 
+later available from Nokia (http://qt.nokia.com).
+
+you may need the GNU C++ compiler from MinGW (http://www.mingw.org) in case it
+is not provided by your Qt installation. MZQt has not been tried with MSVC
+
+To compile just use the common Qt scheme:
+- cd into libmzqt
+- type qmake
+- type make
+
+To clean:
+- type make distlean
+
+-------------------------------------------------------------------------------
+Below is a an example of how to use the library with the Thermo interface
+
+bool readThermoFile(const QString &filename)
+{
+  bool result = true;
+  try {
+
+   	//instantiate the interface
+    ThermoInterface iface;
+
+	//set some parameters
+    iface.setVerbose(true);
+    iface.setCentroiding(true);
+
+    // try to init the thermo library
+    iface.initInterface();
+    iface.setInputFile(filename);
+
+	//loop over all the scans
+    for (long curScanNum = 1; curScanNum <= iface.totalNumScans_; curScanNum++) {
+
+		//read and create a scan
+    	std::auto_ptr<mzqt::Scan> curScan(iface.getScan()); 
+    	
+    	//do access the scan data
+    	.........
+    }
+    
+    //loop over all the UV scans
+    for (long curScanNum = 1; curScanNum <= iface.totalNumUVScans_; curScanNum++) {
+
+    	std::auto_ptr<mzqt::UVScan> curScan(iface.getUVScan());
+    	
+    	//do access the UV scan data
+    	.........
+  	}
+  }
+  catch (const mzqt::Exception &e) {
+   //process the exception
+   .....
+   
+    result = false;
+  }
+  
+  return result;
+}
+
+-------------------------------------------------------------------------------
+Below is a an example of how to use the library with the MassLynx interface
+
+bool readThermoFile(const QString &filename)
+{
+  bool result = true;
+  try {
+
+   	//instantiate the interface
+    MassLynxInterface iface;
+
+	//set some parameters
+    iface.setVerbose(true);
+
+    iface.initInterface();
+    iface.setInputFile(filename);
+    iface.preprocessFunctions(true);
+
+	//loop over all the scans
+    for (long curScanNum = 1; curScanNum <= iface.totalNumScans_; curScanNum++) {
+
+		//read and create a scan
+    	std::auto_ptr<mzqt::Scan> curScan(iface.getScan()); 
+    	
+    	//do access the scan data
+    	.........
+    }
+    
+    //loop over all the UV scans
+    for (long curScanNum = 1; curScanNum <= iface.totalNumUVScans_; curScanNum++) {
+
+    	std::auto_ptr<mzqt::UVScan> curScan(iface.getUVScan());
+    	
+    	//do access the UV scan data
+    	.........
+  	}
+  }
+  catch (const mzqt::Exception &e) {
+   //process the exception
+   .....
+   
+    result = false;
+  }
+  
+  return result;
+}

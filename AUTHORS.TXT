@@ -1,0 +1,7 @@
+MZQt Authors:
+
+Natalie Tasman. From the SHASHIMI project: http://sourceforge.net/projects/sashimi. 
+Did the file converters for the mzXML format which was used as a starting point for this library
+
+Fabien Fontaine. From Lead Molecular Design. http://www.leadmolecular.com
+Did the port from mzXML to Qt and the UV data convertion 
