@@ -1009,6 +1009,19 @@ UVScan *ThermoInterface::getUVScan(void)
 
   UVScan* curScan = new UVScan();
 
+  //to keep a reasonable ratio between UV and MS which is
+  //sometimes desired when the UV detector scans very quickly
+  //TODO I guess that it should be better to have a rate correction
+  unsigned int uvmsRatio = 0;
+  if (maxUVMSRatio_ > 0 && totalNumScans_ > 0) {
+    uvmsRatio = totalNumUVScans_ / totalNumScans_;
+    uvmsRatio /= maxUVMSRatio_;
+
+    if (uvmsRatio > 0 && ((curUVScanNum_ - 1) % uvmsRatio) != 0) {
+      return curScan;
+    }
+  }
+
   int numDataPoints = -1;
   double retentionTimeInMinutes = -1;
   int channel = 0; // unused
