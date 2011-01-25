@@ -187,7 +187,10 @@ bool ThermoInterface::setInputFile(const QString& filename)
   Debug::dbg(Debug::MEDIUM) << "file should contain UV scan numbers "
       << firstUVScanNumber_ << " through " << lastUVScanNumber_ << Debug::ENDL;
 
-  totalNumUVScans_ = (lastUVScanNumber_ - firstUVScanNumber_) + 1;
+  if (lastUVScanNumber_ == 0)
+    totalNumUVScans_ = 0;
+  else
+    totalNumUVScans_ = (lastUVScanNumber_ - firstUVScanNumber_) + 1;
   initUVScan();
 
   //MS
