@@ -130,6 +130,10 @@ namespace mzqt {
 
         // for thermo scans only
         bool isThermo_;
+        // these two fields are only in Exactive files: {<segment>,<event>}
+        // -1 means "unknown"
+        int segment_;
+        int event_;
         QString thermoFilterLine_;
         bool dependentActive_; // t: data-dependent active; f: non active
         std::vector<double> cidParentMass_;// one entry per ms level for level >= 2

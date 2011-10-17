@@ -29,6 +29,8 @@
 #include <cctype> // for toupper
 #include <algorithm>
 
+#include <QString>
+
 #include "FilterLine.h"
 #include "common/MSUtilities.h"
 
@@ -334,7 +336,33 @@ MSActivationType FilterLine::parseActivation(const string& word)
     }
 }
 
-FilterLine::FilterLine() :
+bool FilterLine::parseSegmentAndEvent(const string &w, int &segment, int &event){
+
+  segment=event=-1;
+  bool found = false;
+
+  QString word = QString::fromStdString(w);
+
+  if(word.startsWith('{') && word.endsWith('}')) {
+
+    found = true;
+    word.remove(0,1);
+    word.remove(word.size()-1,1);
+
+    bool ok=false;
+
+    int s = word.section(',',0).toInt(&ok);
+    if(ok == true)
+      segment = s;
+
+    int e = word.section(',',1).toInt(&ok);
+    if(ok == true)
+      event = e;
+  }
+
+  return found;
+}
+FilterLine::FilterLine() : segment_(-1), event_(-1),
     analyzer_(ANALYZER_UNDEF), polarity_(POLARITY_UNDEF), scanData_(
             SCANDATA_UNDEF), ionizationMode_(IONIZATION_UNDEF), coronaOn_(
             BOOL_UNDEF), photoIonizationOn_(BOOL_UNDEF), sourceCIDOn_(
@@ -422,6 +450,9 @@ void FilterLine::print()
 
 }
 
+
+
+
 bool FilterLine::parse(string filterLine)
 {
     /**
@@ -440,11 +471,19 @@ bool FilterLine::parse(string filterLine)
 
     analyzer_ = parseAnalyzer(w);
     if (analyzer_) {
-        // "analyzer" field was present
+        // "analyzer" field was present 
         if (s.eof()) {
             return 1;
         }
         s >> w;
+    }
+
+    if(parseSegmentAndEvent(w,segment_,event_) == true) {
+      // "{segment,event}" field was present
+      if (s.eof()) {
+          return 1;
+      }
+      s >> w;
     }
 
     polarity_ = parsePolarity(w);

@@ -26,6 +26,7 @@
  */
 
 #include <iostream>
+#include <cassert>
 
 #include <mzqt/common/Debug.h>
 

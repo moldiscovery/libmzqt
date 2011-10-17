@@ -108,6 +108,8 @@ Scan::Scan()
 
     // thermo scans only:
     isThermo_ = false;
+    segment_ = -1;
+    event_ = -1;
     thermoFilterLine_ = "";
     dependentActive_ = false;
 
@@ -154,6 +156,8 @@ Scan::Scan(const Scan& copy)
     precursorIntensity_ = copy.precursorIntensity_;
     collisionEnergy_ = copy.collisionEnergy_;
     isThermo_ = copy.isThermo_;
+    segment_ = copy.segment_;
+    event_ = copy.event_;
     thermoFilterLine_ = copy.thermoFilterLine_;
     dependentActive_ = copy.dependentActive_;
     cidParentMass_ = copy.cidParentMass_;

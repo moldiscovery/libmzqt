@@ -25,6 +25,7 @@
 #include <cmath>
 #include <iostream>
 #include <iomanip>
+#include <cassert>
 
 #include <QDebug>
 #include <QFile>
@@ -221,7 +222,11 @@ bool ThermoInterface::setInputFile(const QString& filename)
 
   Debug::dbg(Debug::MEDIUM) << "Instrument model: " << instModel << Debug::ENDL;
 
-  if (instModel == "LTQ") {
+  if (instModel == "EXACTIVE ORBITRAP") {
+    instrumentInfo_.instrumentModel_ = EXACTIVE_ORBITRAP;
+    instrumentInfo_.manufacturer_ = THERMO_SCIENTIFIC;
+  }
+  else if (instModel == "LTQ") {
     instrumentInfo_.instrumentModel_ = LTQ;
     instrumentInfo_.manufacturer_ = THERMO_SCIENTIFIC;
   }
@@ -459,6 +464,10 @@ Scan* ThermoInterface::getScan(void)
   // record scan type from filter line
   // (zoom, full, srm, etc)
   curScan->scanType_ = filterLine.scanType_;
+
+  // record Segment and event from filter line
+  curScan->segment_ = filterLine.segment_;
+  curScan->event_ = filterLine.event_;
 
   // record data-dependent scan from filter line
   curScan->dependentActive_ = filterLine.dependentActive_

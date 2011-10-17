@@ -24,6 +24,8 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 
+#include <cassert>
+
 #include <QString>
 #include <QDir>
 #include <QTime>

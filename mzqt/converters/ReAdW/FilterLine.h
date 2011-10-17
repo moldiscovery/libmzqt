@@ -59,6 +59,12 @@ namespace mzqt {
         MSScanType parseScanType(const std::string& word);
 
         MSActivationType parseActivation(const std::string& word);
+        bool parseSegmentAndEvent(const std::string &w, int &segment, int &event);
+
+        // these two fields are only in Exactive files: {<segment>,<event>}
+        // -1 means "unknown"
+        int segment_;
+        int event_;
 
         MSAnalyzerType analyzer_;
         MSPolarityType polarity_;
