@@ -226,6 +226,10 @@ bool ThermoInterface::setInputFile(const QString& filename)
     instrumentInfo_.instrumentModel_ = EXACTIVE_ORBITRAP;
     instrumentInfo_.manufacturer_ = THERMO_SCIENTIFIC;
   }
+  else if (instModel == "ORBITRAP ELITE") {
+    instrumentInfo_.instrumentModel_ = ORBITRAP_ELITE;
+    instrumentInfo_.manufacturer_ = THERMO_SCIENTIFIC;
+  }
   else if (instModel == "LTQ") {
     instrumentInfo_.instrumentModel_ = LTQ;
     instrumentInfo_.manufacturer_ = THERMO_SCIENTIFIC;

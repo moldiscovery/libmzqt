@@ -97,6 +97,9 @@ std::string toString(MSInstrumentModelType instrumentModel)
 {
     string str;
     switch (instrumentModel) {
+    case ORBITRAP_ELITE:
+      str = "Orbitrap Elite";
+      break;
     case EXACTIVE_ORBITRAP:
       str = "Exactive Orbitrap";
       break;
@@ -248,6 +251,9 @@ std::string toOBO(MSInstrumentModelType instrumentModel)
 {
     string obo;
     switch (instrumentModel) {
+    case ORBITRAP_ELITE:
+      obo = "MS:9999999"; // OBO: add
+      break;
     case EXACTIVE_ORBITRAP:
       obo = "MS:9999999"; // OBO: add
       break;
