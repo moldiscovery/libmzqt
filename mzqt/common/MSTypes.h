@@ -176,7 +176,7 @@ namespace mzqt {
 
         // added for Agilent MassHunter
         // assuming NSI is equivilent to nanospray ESI
-        MS_CHIP,
+        MS_CHIP
     } MSIonizationType;
     std::string toString(MSIonizationType ionization);
     std::string toOBO(MSIonizationType ionization);
