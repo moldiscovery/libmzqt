@@ -97,6 +97,9 @@ std::string toString(MSInstrumentModelType instrumentModel)
 {
     string str;
     switch (instrumentModel) {
+    case EXACTIVE_PLUS_ORBITRAP:
+      str = "Exactive Plus Orbitrap";
+      break;
     case Q_EXACTIVE_ORBITRAP:
       str = "Q Exactive Orbitrap";
       break;

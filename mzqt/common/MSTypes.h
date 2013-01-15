@@ -45,6 +45,7 @@ namespace mzqt {
     typedef enum {
         INSTRUMENTMODEL_UNDEF = 0,
         // thermo scientific
+        EXACTIVE_PLUS_ORBITRAP,
         Q_EXACTIVE_ORBITRAP,
         ORBITRAP_ELITE,
         EXACTIVE_ORBITRAP,

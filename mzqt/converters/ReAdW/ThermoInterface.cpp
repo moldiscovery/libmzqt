@@ -222,7 +222,11 @@ bool ThermoInterface::setInputFile(const QString& filename)
 
   Debug::dbg(Debug::MEDIUM) << "Instrument model: " << instModel << Debug::ENDL;
 
-  if (instModel == "Q EXACTIVE ORBITRAP") {
+  if (instModel == "EXACTIVE PLUS ORBITRAP") {
+    instrumentInfo_.instrumentModel_ = EXACTIVE_PLUS_ORBITRAP;
+    instrumentInfo_.manufacturer_ = THERMO_SCIENTIFIC;
+  }
+  else if (instModel == "Q EXACTIVE ORBITRAP") {
     instrumentInfo_.instrumentModel_ = Q_EXACTIVE_ORBITRAP;
     instrumentInfo_.manufacturer_ = THERMO_SCIENTIFIC;
   }
