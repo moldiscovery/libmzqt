@@ -25,6 +25,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <cassert>
+#include <cmath>
 
 #include <QString>
 #include <QDir>
@@ -118,7 +119,7 @@ void MassLynxInterface::initInterface(void)
 
 void MassLynxInterface::readFunctionType()
 {
-  totalNumScans_ = totalNumUVScans_ = maxFunctionScan_ = 0;
+  totalNumScans_ = totalNumUVScans_ = 0;
 
   DACFunctionInfo functionInfo;
 
@@ -162,7 +163,6 @@ void MassLynxInterface::readFunctionType()
     if (scanType == FULL) {
       int numScan = functionInfo.getNumScans();
       totalNumScans_ += numScan;
-      maxFunctionScan_ = std::max(numScan, maxFunctionScan_);
     }
     else if (scanType == SCAN_UV) {
       int numScan = functionInfo.getNumScans();
@@ -177,6 +177,8 @@ void MassLynxInterface::preprocessMSFunctions()
 {
   DACFunctionInfo functionInfo;
   DACScanStats scanStats;
+
+  maxFunctionScan_ = 0;
 
   for (int curFunction = 0; curFunction < (int) functionTypes_.size(); curFunction++) {
 
@@ -226,34 +228,64 @@ void MassLynxInterface::preprocessMSFunctions()
             << " scans.";
       }
 
+      //get the scan time ratio from the time range
+      int numUnskipedScans = 0;
+      unsigned int scanTimeRatio = 0;
+      if(numScan > 1 && maxScanTimeRatio_ > 0.0) {
+        scanStats.getScanStats(inputFileName_, curFunction + 1, 0, 1);
+        double minRT = scanStats.getRetnTime();
+        scanStats.getScanStats(inputFileName_, curFunction + 1, 0, numScan);
+        double maxRT = scanStats.getRetnTime();
+        double timeRange = maxRT - minRT;
+
+        double maxScanTimeRatio = maxScanTimeRatio_;
+        if (maxScanTimeRatioSlope_ != 0) {
+          maxScanTimeRatio = maxScanTimeRatioSlope_ * log(timeRange)
+              + maxScanTimeRatio_;
+        }
+
+        //round to the closest integer to have an even repartition
+        scanTimeRatio = round((numScan / timeRange) / maxScanTimeRatio);
+      }
+
+      //for all the scans of that function
       for (int scanIndex = 0; scanIndex < numScan; scanIndex++) {
 
         MassLynxScanHeader tempScanHeader;
-        scanStats.getScanStats(inputFileName_, curFunction + 1, 0, scanIndex
-            + 1);
-        tempScanHeader.funcNum = curFunction + 1;
-        tempScanHeader.scanNum = scanIndex + 1;
-        tempScanHeader.msLevel = curMSLevel;
 
-        tempScanHeader.numPeaksInScan = scanStats.getPeaksInScan();
-        tempScanHeader.retentionTimeInSec = scanStats.getRetnTime();
+        if (scanTimeRatio > 0 && scanIndex % scanTimeRatio != 0) {
+          tempScanHeader.skip = true;
+        }
+        else {
+          tempScanHeader.skip = false;
+          numUnskipedScans++;
 
-        // convert RT to seconds (from minutes)
-        tempScanHeader.retentionTimeInSec
-            = (float) (tempScanHeader.retentionTimeInSec * 60.0);
+          scanStats.getScanStats(inputFileName_, curFunction + 1, 0, scanIndex
+                                 + 1);
+          tempScanHeader.funcNum = curFunction + 1;
+          tempScanHeader.scanNum = scanIndex + 1;
+          tempScanHeader.msLevel = curMSLevel;
 
-        tempScanHeader.lowMass = scanStats.getLoMass();
-        tempScanHeader.highMass = scanStats.getHiMass();
-        tempScanHeader.TIC = scanStats.getTIC();
-        tempScanHeader.basePeakMass = scanStats.getBPM();
-        tempScanHeader.basePeakIntensity = scanStats.getBPI();
+          tempScanHeader.numPeaksInScan = scanStats.getPeaksInScan();
+          tempScanHeader.retentionTimeInSec = scanStats.getRetnTime();
 
-        //From original xml_out.cpp (note, curFunction == 1 is the second function)
-        // Kludge.  Reference scans are (always?) in function 2
-        //(and above?)
-        //This is temporary until ExScanStats is repaired by
-        //Waters
-        tempScanHeader.isCalibrated = (curFunction > 0);
+          // convert RT to seconds (from minutes)
+          tempScanHeader.retentionTimeInSec
+              = (float) (tempScanHeader.retentionTimeInSec * 60.0);
+
+          tempScanHeader.lowMass = scanStats.getLoMass();
+          tempScanHeader.highMass = scanStats.getHiMass();
+          tempScanHeader.TIC = scanStats.getTIC();
+          tempScanHeader.basePeakMass = scanStats.getBPM();
+          tempScanHeader.basePeakIntensity = scanStats.getBPI();
+
+          //From original xml_out.cpp (note, curFunction == 1 is the second function)
+          // Kludge.  Reference scans are (always?) in function 2
+          //(and above?)
+          //This is temporary until ExScanStats is repaired by
+          //Waters
+          tempScanHeader.isCalibrated = (curFunction > 0);
+        }
 
         scanHeaderVec_.push_back(tempScanHeader);
 
@@ -262,6 +294,8 @@ void MassLynxInterface::preprocessMSFunctions()
       if (verbose_) {
         Debug::msg() << numScan << " scans preprocessed";
       }
+
+      maxFunctionScan_ = std::max(numUnskipedScans, maxFunctionScan_);
     }
   }
 
@@ -319,7 +353,6 @@ void MassLynxInterface::preprocessUVFunctions()
 
       //to keep a reasonable ratio between UV and MS which is
       //sometimes desired when the UV detector scans very quickly
-      //TODO check that this would be useful for MS/MS
       //TODO I guess that it should be better to have a rate correction
       unsigned int uvmsRatio = 0;
       if (maxUVMSRatio_ > 0 && maxFunctionScan_ > 0) {
@@ -554,6 +587,8 @@ Scan* MassLynxInterface::getScan(void)
   // we've already stored a lot of scan info in the header:
   // copy that over to the scan object that we're building
   MassLynxScanHeader curScanHeader = scanHeaderVec_[curScanNum_];
+  if (curScanHeader.skip == true)
+    return curScan;
 
   curScan->msLevel_ = curScanHeader.msLevel;
   curScan->setNumDataPoints(curScanHeader.numPeaksInScan);

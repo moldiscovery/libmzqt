@@ -44,6 +44,8 @@ InstrumentInterface::InstrumentInterface(void)
   accurateMasses_ = 0;
   inaccurateMasses_ = 0;
   maxUVMSRatio_ = 0;
+  maxScanTimeRatio_ = 0.0;
+  maxScanTimeRatioSlope_ = 0.0;
 
   totalNumUVScans_ = -1;
   curUVScanNum_ = -1;

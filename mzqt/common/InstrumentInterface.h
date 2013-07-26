@@ -63,6 +63,8 @@ namespace mzqt {
     int accurateMasses_;
     int inaccurateMasses_;
     unsigned int maxUVMSRatio_;
+    double maxScanTimeRatio_;
+    double maxScanTimeRatioSlope_;
     std::vector<int> chargeCounts_;
 
     //UV
