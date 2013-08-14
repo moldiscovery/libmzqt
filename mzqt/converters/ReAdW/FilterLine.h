@@ -79,6 +79,7 @@ namespace mzqt {
         TriBool widebandOn_; // wideband activation
         AccurateMassType accurateMass_;
         MSScanType scanType_;
+        TriBool lockON_;
         int msLevel_; // n, in MSn: >0
         MSActivationType activationMethod_;
 

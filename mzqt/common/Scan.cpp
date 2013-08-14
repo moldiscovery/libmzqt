@@ -112,6 +112,7 @@ Scan::Scan()
     event_ = -1;
     thermoFilterLine_ = "";
     dependentActive_ = false;
+    sourceCIDOn_ = false;
 
     // MassLynx scans only
     isMassLynx_ = false;
@@ -160,6 +161,7 @@ Scan::Scan(const Scan& copy)
     event_ = copy.event_;
     thermoFilterLine_ = copy.thermoFilterLine_;
     dependentActive_ = copy.dependentActive_;
+    sourceCIDOn_ = copy.sourceCIDOn_;
     cidParentMass_ = copy.cidParentMass_;
     isMassLynx_ = copy.isMassLynx_;
     isCalibrated_ = copy.isCalibrated_;

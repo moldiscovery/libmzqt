@@ -136,6 +136,7 @@ namespace mzqt {
         int event_;
         QString thermoFilterLine_;
         bool dependentActive_; // t: data-dependent active; f: non active
+        bool sourceCIDOn_;
         std::vector<double> cidParentMass_;// one entry per ms level for level >= 2
         std::vector<double> cidEnergy_; // relative units; one entry per ms level for level >= 2
 

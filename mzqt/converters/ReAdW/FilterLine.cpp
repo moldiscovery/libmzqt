@@ -368,8 +368,8 @@ FilterLine::FilterLine() : segment_(-1), event_(-1),
             BOOL_UNDEF), photoIonizationOn_(BOOL_UNDEF), sourceCIDOn_(
             BOOL_UNDEF), detectorSet_(BOOL_UNDEF), turboScanOn_(BOOL_UNDEF),
             dependentActive_(BOOL_UNDEF), widebandOn_(BOOL_UNDEF),
-            accurateMass_(ACCURATEMASS_UNDEF), scanType_(SCAN_UNDEF), msLevel_(
-                    0), activationMethod_(ACTIVATION_UNDEF)
+            accurateMass_(ACCURATEMASS_UNDEF), scanType_(SCAN_UNDEF),
+            lockON_(BOOL_UNDEF), msLevel_(0), activationMethod_(ACTIVATION_UNDEF)
 {
     cidParentMass_.clear();
     cidEnergy_.clear();
@@ -436,6 +436,10 @@ void FilterLine::print()
 
     if (scanType_) {
         cout << "scan type: " << scanType_ << endl;
+    }
+
+    if (lockON_ != BOOL_UNDEF) {
+        cout << "lock: " << lockON_ << endl;
     }
 
     if (msLevel_ > 0) {
@@ -676,6 +680,19 @@ bool FilterLine::parse(string filterLine)
         if (scanType_ == Q1MS) {
             msLevel_ = 1;
         }
+    }
+
+    //Lock
+    if (w == "LOCK") {
+      lockON_ = BOOL_TRUE;
+      advance = true;
+    }
+    if (advance) {
+      if (s.eof()) {
+        return 1;
+      }
+      s >> w;
+      advance = false;
     }
 
     // MS order

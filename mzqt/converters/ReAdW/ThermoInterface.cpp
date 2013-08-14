@@ -485,6 +485,10 @@ Scan* ThermoInterface::getScan(void)
   curScan->dependentActive_ = filterLine.dependentActive_
       == FilterLine::BOOL_TRUE ? true : false;
 
+  //r record in source fragmentation from filter line
+  curScan->sourceCIDOn_ = filterLine.sourceCIDOn_
+      == FilterLine::BOOL_TRUE ? true : false;
+
   // record activation (CID, etc)
   // check FilterLine: this may be default set to CID now
   if (filterLine.activationMethod_ != ACTIVATION_UNDEF) {
