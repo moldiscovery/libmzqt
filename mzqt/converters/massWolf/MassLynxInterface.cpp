@@ -228,56 +228,81 @@ void MassLynxInterface::preprocessMSFunctions()
             << " scans.";
       }
 
-      //get the scan time ratio from the time range
-      int numUnskipedScans = 0;
-      unsigned int scanTimeRatio = 0;
-      if(numScan > 1 && maxScanTimeRatio_ > 0.0) {
-        scanStats.getScanStats(inputFileName_, curFunction + 1, 0, 1);
-        double minRT = scanStats.getRetnTime();
-        scanStats.getScanStats(inputFileName_, curFunction + 1, 0, numScan);
-        double maxRT = scanStats.getRetnTime();
-        double timeRange = maxRT - minRT;
+      double startRT = functionInfo.getStartRT();
+      double endRT = functionInfo.getEndRT();
 
-        double maxScanTimeRatio = maxScanTimeRatio_;
-        if (maxScanTimeRatioSlope_ != 0) {
-          maxScanTimeRatio = maxScanTimeRatioSlope_ * log(timeRange)
-              + maxScanTimeRatio_;
-        }
-
-        //round to the closest integer to have an even repartition
-        scanTimeRatio = round((numScan / timeRange) / maxScanTimeRatio);
+      if(verbose_) {
+        Debug::msg() << "startRT: " << startRT;
+        Debug::msg() << "endRT: " << endRT;
       }
 
       //for all the scans of that function
+      int realScanCount = 0;
       for (int scanIndex = 0; scanIndex < numScan; scanIndex++) {
 
         MassLynxScanHeader tempScanHeader;
 
-        if (scanTimeRatio > 0 && scanIndex % scanTimeRatio != 0) {
+        //In the Xevo-G2S we've got some cases where uninitialized scans
+        //are inserted so we need to check the validity of the
+        //scan first
+        //Unfortunately it doesn't guaranty that all the bad scans will
+        //be filtered. The unfiltered spectra themself should be tested later too
+        scanStats.getScanStats(inputFileName_, curFunction + 1, 0, scanIndex
+                               + 1);
+
+        float rt = scanStats.getRetnTime();  ;
+        float tic = scanStats.getTIC();
+        double lowMass = scanStats.getLoMass();
+        double highMass = scanStats.getHiMass();
+        double basePeakMass = scanStats.getBPM();
+        double basePeakIntensity = scanStats.getBPI();
+        if(basePeakMass < lowMass || basePeakMass > highMass ||
+           rt < startRT + 1.0e-5 || rt > endRT + 1.0e-5 ||
+           tic < 1.0e-5 || tic > 1.0e+15 ||
+           basePeakIntensity < 1.0e-5 || tic > 1.0e+15 ||
+           isnan(rt) || isnan(tic) || isnan(basePeakMass) || isnan(basePeakIntensity)) {
           tempScanHeader.skip = true;
+          Debug::dbg(Debug::HIGH) << "skip nonsense scan: " << scanIndex << Debug::ENDL;
         }
         else {
           tempScanHeader.skip = false;
-          numUnskipedScans++;
+          Debug::dbg(Debug::HIGH) << "temporary keep scan: " << scanIndex << Debug::ENDL;
+          realScanCount++;
 
-          scanStats.getScanStats(inputFileName_, curFunction + 1, 0, scanIndex
-                                 + 1);
           tempScanHeader.funcNum = curFunction + 1;
+          Debug::dbg(Debug::HIGH) << "funcNum: " << tempScanHeader.funcNum << Debug::ENDL;
+
           tempScanHeader.scanNum = scanIndex + 1;
-          tempScanHeader.msLevel = curMSLevel;
+          Debug::dbg(Debug::HIGH) << "scanNum: " << tempScanHeader.scanNum << Debug::ENDL;
 
-          tempScanHeader.numPeaksInScan = scanStats.getPeaksInScan();
-          tempScanHeader.retentionTimeInSec = scanStats.getRetnTime();
-
+          tempScanHeader.retentionTimeInSec = rt;
           // convert RT to seconds (from minutes)
           tempScanHeader.retentionTimeInSec
               = (float) (tempScanHeader.retentionTimeInSec * 60.0);
+          Debug::dbg(Debug::HIGH) << "retentionTimeInSec: " << tempScanHeader.retentionTimeInSec
+                                  << Debug::ENDL;
 
-          tempScanHeader.lowMass = scanStats.getLoMass();
-          tempScanHeader.highMass = scanStats.getHiMass();
-          tempScanHeader.TIC = scanStats.getTIC();
-          tempScanHeader.basePeakMass = scanStats.getBPM();
-          tempScanHeader.basePeakIntensity = scanStats.getBPI();
+          tempScanHeader.msLevel = curMSLevel;
+          Debug::dbg(Debug::HIGH) << "curMSLevel: " << tempScanHeader.msLevel << Debug::ENDL;
+
+          tempScanHeader.numPeaksInScan = scanStats.getPeaksInScan();
+          Debug::dbg(Debug::HIGH) << "numPeaksInScan: " << tempScanHeader.numPeaksInScan
+                                  << Debug::ENDL;
+
+          tempScanHeader.TIC = tic;
+          Debug::dbg(Debug::HIGH) << "TIC: " << tempScanHeader.TIC << Debug::ENDL;
+
+          tempScanHeader.lowMass = lowMass;
+          Debug::dbg(Debug::HIGH) << "lowMass: " << tempScanHeader.lowMass << Debug::ENDL;
+
+          tempScanHeader.highMass = highMass;
+          Debug::dbg(Debug::HIGH) << "highMass: " << tempScanHeader.highMass << Debug::ENDL;
+
+          tempScanHeader.basePeakMass = basePeakMass;
+          Debug::dbg(Debug::HIGH) << "basePeakMass: " << tempScanHeader.basePeakMass << Debug::ENDL;
+
+          tempScanHeader.basePeakIntensity = basePeakIntensity;
+          Debug::dbg(Debug::HIGH) << "basePeakIntensity: " << tempScanHeader.basePeakIntensity << Debug::ENDL;
 
           //From original xml_out.cpp (note, curFunction == 1 is the second function)
           // Kludge.  Reference scans are (always?) in function 2
@@ -285,12 +310,50 @@ void MassLynxInterface::preprocessMSFunctions()
           //This is temporary until ExScanStats is repaired by
           //Waters
           tempScanHeader.isCalibrated = (curFunction > 0);
+          Debug::dbg(Debug::HIGH) << "isCalibrated: " << tempScanHeader.isCalibrated << Debug::ENDL;
         }
 
         scanHeaderVec_.push_back(tempScanHeader);
 
+
+
         emit scanPreprocessed();
       }
+
+      //get the scan time ratio from the time range
+      unsigned int scanTimeRatio = 0;
+      if(realScanCount > 1 && maxScanTimeRatio_ > 0.0) {
+
+        double timeRange = endRT - startRT;
+        double maxScanTimeRatio = maxScanTimeRatio_;
+        if (maxScanTimeRatioSlope_ != 0) {
+          maxScanTimeRatio = maxScanTimeRatioSlope_ * log(timeRange)
+              + maxScanTimeRatio_;
+        }
+
+        //round to the closest integer to have an even repartition
+        scanTimeRatio = round((realScanCount / timeRange) / maxScanTimeRatio);
+        Debug::dbg(Debug::HIGH) << "scanTimeRatio: " << scanTimeRatio << Debug::ENDL;
+      }
+
+      int numUnskipedScans = 0;
+      int realScanIndex = 0;
+      for (int scanIndex = 0; scanIndex < numScan; scanIndex++) {
+
+        if(scanHeaderVec_[scanIndex].skip)
+          continue;
+
+        if (scanTimeRatio > 0 && realScanIndex % scanTimeRatio != 0) {
+          scanHeaderVec_[scanIndex].skip = true;
+          Debug::dbg(Debug::HIGH) << "skip time excluded scan: " << scanIndex << Debug::ENDL;
+        }
+        else {
+          numUnskipedScans++;
+        }
+
+        realScanIndex++;
+      }
+
       if (verbose_) {
         Debug::msg() << numScan << " scans preprocessed";
       }
@@ -307,10 +370,14 @@ void MassLynxInterface::preprocessMSFunctions()
   if (totalNumScans_ == 0)
     throw MassLynxInterfaceException("no scan found");
 
+
   startTimeInSec_ = -1;
   endTimeInSec_ = -1;
 
   for (unsigned int i = 0; i < scanHeaderVec_.size(); ++i) {
+
+    if(scanHeaderVec_[i].skip)
+      continue;
 
     double rt = scanHeaderVec_[i].retentionTimeInSec;
     startTimeInSec_ = startTimeInSec_ == -1 ? rt : min(rt, startTimeInSec_);

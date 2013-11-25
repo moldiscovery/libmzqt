@@ -30,6 +30,7 @@
 #include <vector>
 #include <cmath>
 
+#include <mzqt/common/debug.h>
 #include "Scan.h"
 
 
@@ -52,6 +53,8 @@ typedef struct _peak {
 
 void Scan::setNumDataPoints(int numDataPoints)
 {
+    //Debug::dbg(Debug::HIGH) << "setting datapoints: " << numDataPoints
+    //                        << Debug::ENDL;
     if (numDataPoints == 0) {
         numDataPoints_ = numDataPoints;
         return;
@@ -190,6 +193,8 @@ Scan::Scan(const Scan& copy)
 
 Scan::~Scan()
 {
+    //Debug::dbg(Debug::HIGH) << "Destructing datapoints: " << numDataPoints_
+    //                        << Debug::ENDL;
     delete[] mzArray_;
     delete[] intensityArray_;
 }

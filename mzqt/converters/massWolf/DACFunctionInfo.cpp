@@ -62,3 +62,14 @@ int DACFunctionInfo::getNumScans()
   return numScans.toInt();
 }
 
+float DACFunctionInfo::getStartRT()
+{
+    QVariant rt = idispatch_->property("StartRT");
+    return rt.toDouble();
+}
+
+float DACFunctionInfo::getEndRT()
+{
+  QVariant rt = idispatch_->property("EndRT");
+  return rt.toDouble();
+}

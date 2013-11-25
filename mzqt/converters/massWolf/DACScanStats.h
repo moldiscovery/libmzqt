@@ -42,6 +42,12 @@ namespace mzqt {
         float getTIC();
         float getBPM();
         float getBPI();
+        int getAccurateMass();
+        int getCalibrated();
+        bool getContinuum();
+        int getMolecularMass();
+        int getOverload();
+
     };
 
 }

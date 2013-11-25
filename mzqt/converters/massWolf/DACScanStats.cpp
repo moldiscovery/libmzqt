@@ -95,3 +95,37 @@ float DACScanStats::getBPI()
   return prop.toDouble();
 }
 
+int DACScanStats::getAccurateMass()
+{
+  QVariant accurateMass = idispatch_->property("AccurateMass");
+
+  return accurateMass.toInt();
+}
+
+int DACScanStats::getCalibrated()
+{
+  QVariant calibrated = idispatch_->property("Calibrated");
+
+  return calibrated.toInt();
+}
+
+bool DACScanStats::getContinuum()
+{
+  QVariant continuum = idispatch_->property("Continuum");
+
+  return continuum.toBool();
+}
+
+int DACScanStats::getMolecularMass()
+{
+  QVariant mmass = idispatch_->property("MolecularMass");
+
+  return mmass.toInt();
+}
+
+int DACScanStats::getOverload()
+{
+  QVariant overload = idispatch_->property("Overload");
+
+  return overload.toInt();
+}

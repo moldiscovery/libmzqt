@@ -38,6 +38,8 @@ namespace mzqt {
         void getFunctionInfo(const QString &inputFileName, int n);
         QString getFunctionType();
         int getNumScans();
+        float getStartRT();
+        float getEndRT();
     };
 
 }
