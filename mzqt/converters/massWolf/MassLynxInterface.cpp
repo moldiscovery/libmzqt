@@ -238,6 +238,11 @@ void MassLynxInterface::preprocessMSFunctions()
 
       //for all the scans of that function
       int realScanCount = 0;
+      unsigned scanHeaderStart = scanHeaderVec_.size();
+      if(verbose_) {
+        Debug::msg() << "scanHeaderStart: " << scanHeaderStart;
+      }
+
       for (int scanIndex = 0; scanIndex < numScan; scanIndex++) {
 
         MassLynxScanHeader tempScanHeader;
@@ -340,11 +345,11 @@ void MassLynxInterface::preprocessMSFunctions()
       int realScanIndex = 0;
       for (int scanIndex = 0; scanIndex < numScan; scanIndex++) {
 
-        if(scanHeaderVec_[scanIndex].skip)
+        if(scanHeaderVec_[scanHeaderStart + scanIndex].skip)
           continue;
 
         if (scanTimeRatio > 0 && realScanIndex % scanTimeRatio != 0) {
-          scanHeaderVec_[scanIndex].skip = true;
+          scanHeaderVec_[scanHeaderStart + scanIndex].skip = true;
           Debug::dbg(Debug::HIGH) << "skip time excluded scan: " << scanIndex << Debug::ENDL;
         }
         else {
