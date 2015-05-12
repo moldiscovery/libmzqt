@@ -57,7 +57,11 @@ Debug::Manager::Manager() :
 void Debug::Manager::flush(bool addEndLine)
 {
   if (possible(requestLevel_)) {
+#if 0
     qt_message_output(QtDebugMsg, buffer_.toLocal8Bit().data());
+#else
+    qDebug(buffer_.toLocal8Bit().data());
+#endif
 
     if (file_.isOpen() == true) {
 

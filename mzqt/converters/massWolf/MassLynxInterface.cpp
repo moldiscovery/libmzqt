@@ -363,7 +363,7 @@ void MassLynxInterface::preprocessMSFunctions()
         Debug::msg() << numScan << " scans preprocessed";
       }
 
-      maxFunctionScan_ = std::max(numUnskipedScans, maxFunctionScan_);
+      maxFunctionScan_ = qMax(numUnskipedScans, maxFunctionScan_);
     }
   }
 
