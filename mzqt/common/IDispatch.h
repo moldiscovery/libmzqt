@@ -23,7 +23,7 @@
 #define MZQT_DISPATCH_H_
 
 #include <memory>
-#include <windef.h>
+#include <windows.h>
 #include <mzqt/common/Exception.h>
 
 class QAxObject;

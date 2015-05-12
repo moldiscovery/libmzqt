@@ -468,7 +468,7 @@ void XRawfile::GetFilters(QStringList &filters)
   assert(dispid != DISPID_UNKNOWN);
 
   //init the variants
-  int cArgs = 2;
+  const int cArgs = 2;
   VARIANTARG varg[cArgs];
   ::VariantInit(&varg[0]);
   ::VariantInit(&varg[1]);
@@ -779,7 +779,7 @@ void XRawfile::GetTrailerExtraValueForScanNum(int nScanNumber,
   assert(dispid != DISPID_UNKNOWN);
 
   //init the variants
-  int cArgs = 3;
+  const int cArgs = 3;
   VARIANTARG varg[cArgs];
   ::VariantInit(&varg[0]);
   ::VariantInit(&varg[1]);
