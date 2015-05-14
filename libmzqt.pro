@@ -3,8 +3,17 @@ DESTDIR = lib
 MOC_DIR = tmp
 OBJECTS_DIR = tmp
 TARGET = mzqt
-CONFIG += qaxcontainer
+#CONFIG += qaxcontainer
+QT +=axcontainer
 CONFIG += warn_on
+
+win32-msvc* {
+    message(Compile static library)
+    CONFIG+= staticlib
+}
+else {
+    message(Compile dynamic library)
+}
 
 QT -= gui
 
