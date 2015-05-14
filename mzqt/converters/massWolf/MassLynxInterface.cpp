@@ -102,10 +102,16 @@ MassLynxInterface::MassLynxInterface(void)
   firstTime_ = true;
   firstUVTime_ = true;
   totalNumFunctions_ = -1;
+  functionFilter_ = -1;
 }
 
 MassLynxInterface::~MassLynxInterface(void)
 {
+}
+
+void MassLynxInterface::setFunctionFilter(int functionNumber)
+{
+    functionFilter_ = functionNumber;
 }
 
 void MassLynxInterface::initInterface(void)
@@ -161,8 +167,10 @@ void MassLynxInterface::readFunctionType()
     }
 
     if (scanType == FULL) {
-      int numScan = functionInfo.getNumScans();
-      totalNumScans_ += numScan;
+        if (functionFilter_ <= 0 || curFunction + 1 == functionFilter_) {
+            int numScan = functionInfo.getNumScans();
+            totalNumScans_ += numScan;
+        }
     }
     else if (scanType == SCAN_UV) {
       int numScan = functionInfo.getNumScans();
@@ -181,6 +189,9 @@ void MassLynxInterface::preprocessMSFunctions()
   maxFunctionScan_ = 0;
 
   for (int curFunction = 0; curFunction < (int) functionTypes_.size(); curFunction++) {
+
+    if (functionFilter_ > 0 && curFunction + 1 != functionFilter_)
+        continue;
 
     if (functionTypes_[curFunction] == FULL) {
 

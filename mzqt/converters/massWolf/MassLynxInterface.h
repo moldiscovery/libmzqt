@@ -88,6 +88,8 @@ namespace mzqt {
     DACSpectrum spectrum_;
     DACExScanStats exScanStats_;
 
+    int functionFilter_;
+
     void initUVScan();
     void readFunctionType();
 
@@ -105,6 +107,7 @@ namespace mzqt {
     virtual void setDeisotoping(bool deisotope);
     virtual void setCompression(bool compression);
     virtual void setVerbose(bool verbose);
+    virtual void setFunctionFilter(int functionNumber);
     virtual Scan* getScan(void);
     virtual UVScan *getUVScan(void);
 

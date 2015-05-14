@@ -45,6 +45,7 @@
 
 #define DEBUG_GET_SCAN 0
 #define DEBUG_PRECURSOR_INFO 0
+#define DO_VERSION_TEST 0
 
 using namespace mzqt;
 
@@ -148,6 +149,7 @@ bool ThermoInterface::setInputFile(const QString& filename)
 
   // test the file format version number, also useful to check if the
   // file is a valid XCalibur file
+#if DO_VERSION_TEST
   int fileVersionNumber = -1;
   xrawfile2_.GetVersionNumber(fileVersionNumber);
   if (fileVersionNumber == 0) {
@@ -155,6 +157,7 @@ bool ThermoInterface::setInputFile(const QString& filename)
         QString("Unable to get file version for file: %1").arg(filename);
     throw ThermoInterfaceException(msg.toStdString());
   }
+#endif
 
 #if 0
   Debug::dbg(Debug::MEDIUM) << "file version is " << fileVersionNumber
