@@ -76,6 +76,7 @@ namespace mzqt {
         TriBool detectorSet_;
         TriBool turboScanOn_;
         TriBool dependentActive_; // t: data-dependent active; f: non active
+        TriBool rapidScanRate_;
         TriBool widebandOn_; // wideband activation
         AccurateMassType accurateMass_;
         MSScanType scanType_;

@@ -106,6 +106,10 @@ using namespace mzqt;
  E			enhanced on
  !E			enhanced off
 
+ Rapid Scan Rate
+ r      rapid scan rate active
+ !r     rapid scan rate not active
+
  Dependent Type
  d			data dependent active
  !d			data dependent not-active
@@ -617,6 +621,40 @@ bool FilterLine::parse(string filterLine)
     // evidently it's now used for LTQ-FT in "enhanced" mode
     if ((w == "!E") || (w == "E")) {
         s >> w;
+    }
+
+    // rapid scan rate type
+    if (w == "!R") {
+        rapidScanRate_ = BOOL_FALSE;
+        advance = true;
+    }
+    else if (w == "R") {
+        rapidScanRate_ = BOOL_TRUE;
+        advance = true;
+    }
+    if (advance) {
+        if (s.eof()) {
+            return 1;
+        }
+        s >> w;
+        advance = false;
+    }
+
+    // dependent type
+    if (w == "!D") {
+        dependentActive_ = BOOL_FALSE;
+        advance = true;
+    }
+    else if (w == "D") {
+        dependentActive_ = BOOL_TRUE;
+        advance = true;
+    }
+    if (advance) {
+        if (s.eof()) {
+            return 1;
+        }
+        s >> w;
+        advance = false;
     }
 
     // dependent type
