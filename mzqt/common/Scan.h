@@ -34,6 +34,20 @@
 
 #include "MSTypes.h"
 
+#ifdef __GNUC__
+#define MZQTDLL_API
+#else
+#ifdef MZQTDLL_EXPORTS
+#ifndef MZQTDLL_API
+#define MZQTDLL_API __declspec(dllexport)
+#endif
+#else
+#ifndef MZQTDLL_API
+#define MZQTDLL_API __declspec(dllimport)
+#endif
+#endif
+#endif
+
 namespace mzqt {
 
     class NativeScanRef {
@@ -46,17 +60,17 @@ namespace mzqt {
         std::vector<CoordinateNameValue> coordinates_;
 
     public:
-        inline std::vector<CoordinateNameValue>::size_type getNumCoordinates(
+        MZQTDLL_API inline std::vector<CoordinateNameValue>::size_type getNumCoordinates(
                 void) const
         {
             return coordinates_.size();
         }
-        inline void addCoordinate(ScanCoordinateType name,
+        MZQTDLL_API inline void addCoordinate(ScanCoordinateType name,
                 const std::string &value)
         {
             coordinates_.push_back(CoordinateNameValue(name, value));
         }
-        inline void getCoordinate(
+        MZQTDLL_API inline void getCoordinate(
                 std::vector<CoordinateNameValue>::size_type index,
                 ScanCoordinateType &name, std::string &value)
         {
@@ -70,11 +84,11 @@ namespace mzqt {
                 value.resize(0);
             }
         }
-        inline void setCoordinateType(MSManufacturerType coordinateType)
+        MZQTDLL_API inline void setCoordinateType(MSManufacturerType coordinateType)
         {
             coordinateType_ = coordinateType;
         }
-        inline MSManufacturerType getCoordinateType(void)
+        MZQTDLL_API inline MSManufacturerType getCoordinateType(void)
         {
             return coordinateType_;
         }
@@ -157,12 +171,12 @@ namespace mzqt {
         int numDataPoints_;
 
     public:
-        int getNumDataPoints(void) const
+        MZQTDLL_API int getNumDataPoints(void) const
         {
             return numDataPoints_;
         }
-        void setNumDataPoints(int numDataPoints); // (re)allocates arrays
-        void resetNumDataPoints(int numDataPoints); // set actual number of data points
+        MZQTDLL_API void setNumDataPoints(int numDataPoints); // (re)allocates arrays
+        MZQTDLL_API void resetNumDataPoints(int numDataPoints); // set actual number of data points
 
         double* mzArray_;
         double* intensityArray_;
@@ -171,12 +185,12 @@ namespace mzqt {
         int numScanOrigins_;
 
     public:
-        void setNumScanOrigins(int numScanOrigins);
-        int getNumScanOrigins(void)
+        MZQTDLL_API void setNumScanOrigins(int numScanOrigins);
+        MZQTDLL_API int getNumScanOrigins(void)
         {
             return numScanOrigins_;
         }
-        int isScanMergedResult()
+        MZQTDLL_API int isScanMergedResult()
         {
             return (scanOriginNums.size() > 0 ? 1 : 0);
         }
@@ -186,15 +200,15 @@ namespace mzqt {
 
         // centroid processing
         // copied from SpectraSTPeakList, with Henry's permission
-        void centroid(std::string instrument);
+        MZQTDLL_API void centroid(std::string instrument);
 
         // thresholding -- rewrite the spectra, either deleting or zeroing
-        void threshold(double inclusiveCutoff, bool discard); // if not discard, rewrite as zero
+        MZQTDLL_API void threshold(double inclusiveCutoff, bool discard); // if not discard, rewrite as zero
 
     public:
-        Scan();
-        Scan(const Scan& copy);
-        ~Scan();
+        MZQTDLL_API Scan();
+        MZQTDLL_API Scan(const Scan& copy);
+        MZQTDLL_API ~Scan();
     };
 
 }

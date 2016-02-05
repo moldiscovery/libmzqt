@@ -25,6 +25,20 @@
 #include <iostream>
 #include <mzqt/common/UVSPoint.h>
 
+#ifdef __GNUC__
+#define MZQTDLL_API
+#else
+#ifdef MZQTDLL_EXPORTS
+#ifndef MZQTDLL_API
+#define MZQTDLL_API __declspec(dllexport)
+#endif
+#else
+#ifndef MZQTDLL_API
+#define MZQTDLL_API __declspec(dllimport)
+#endif
+#endif
+#endif
+
 namespace mzqt {
 
     /*! Diode-Array like Spectrum
@@ -35,22 +49,22 @@ namespace mzqt {
 
         typedef UVSPoints Data;
 
-        void clear();
+        MZQTDLL_API void clear();
 
         //! \brief return true if there is no data point
-        bool isEmpty() const;
+        MZQTDLL_API bool isEmpty() const;
 
         //! \brief add a peak at the end of the profile
-        void addDataPoint(Lambda wavelength, UVSignal signal);
-        const Data &getData() const;
-        void setData(const Data &data);
+        MZQTDLL_API void addDataPoint(Lambda wavelength, UVSignal signal);
+        MZQTDLL_API const Data &getData() const;
+        MZQTDLL_API void setData(const Data &data);
 
     private:
 
         Data data_; //!< brief the signal for each lambda of the spectrum
     };
 
-    std::ostream &operator <<(std::ostream &os, const UVSpectrum &spectrum);
+    MZQTDLL_API std::ostream &operator <<(std::ostream &os, const UVSpectrum &spectrum);
 }
 
 

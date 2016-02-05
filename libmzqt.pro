@@ -3,23 +3,25 @@ DESTDIR = lib
 MOC_DIR = tmp
 OBJECTS_DIR = tmp
 TARGET = mzqt
-#CONFIG += qaxcontainer
-QT +=axcontainer
+CONFIG += qaxcontainer
 CONFIG += warn_on
-
-win32-msvc* {
-    message(Compile static library)
-    CONFIG+= staticlib
-}
-else {
-    message(Compile dynamic library)
-}
 
 QT -= gui
 
 INCLUDEPATH = . \
     ./mzqt
+
     
+win32-msvc* {
+    message(Compile msvc dynamic library)
+    DEFINES += MZQTDLL_EXPORTS
+}
+else {
+    message(Compile dynamic library)
+}
+
+DEFINES += MZQTDLL_EXPORTS
+
 HEADERS = mzqt/common/UVSpectrum.h \
     mzqt/common/UVTypes.h \
     mzqt/common/UVSpoint.h \
@@ -40,7 +42,8 @@ HEADERS = mzqt/common/UVSpectrum.h \
     mzqt/common/IDispatch.h \ 
     mzqt/common/Exception.h \
     mzqt/common/Debug.h \
-    mzqt/converters/massWolf/MassLynxInterface.h
+    mzqt/converters/massWolf/MassLynxInterface.h \
+    mzqt/common/UVScan.h
 SOURCES = mzqt/common/UVSpectrum.cpp \
     mzqt/converters/ReAdW/XRawfile.cpp \
     mzqt/converters/massWolf/DACSpectrum.cpp \

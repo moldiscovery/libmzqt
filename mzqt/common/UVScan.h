@@ -24,19 +24,33 @@
 
 #include <mzqt/common/UVSpectrum.h>
 
+#ifdef __GNUC__
+#define MZQTDLL_API
+#else
+#ifdef MZQTDLL_EXPORTS
+#ifndef MZQTDLL_API
+#define MZQTDLL_API __declspec(dllexport)
+#endif
+#else
+#ifndef MZQTDLL_API
+#define MZQTDLL_API __declspec(dllimport)
+#endif
+#endif
+#endif
+
 namespace mzqt {
 
     class UVScan {
 
     public:
-        UVScan();
+        MZQTDLL_API UVScan();
 
-        Time getTime() const;
-        const UVSpectrum &getSpectrum() const;
-        UVSpectrum &getSpectrum();
+        MZQTDLL_API Time getTime() const;
+        MZQTDLL_API const UVSpectrum &getSpectrum() const;
+        MZQTDLL_API UVSpectrum &getSpectrum();
 
-        void setTime(Time rt);
-        void setSpectrum(const UVSpectrum &spectrum);
+        MZQTDLL_API void setTime(Time rt);
+        MZQTDLL_API void setSpectrum(const UVSpectrum &spectrum);
 
     private:
         Time time_; //!< retention time

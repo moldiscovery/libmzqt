@@ -26,6 +26,20 @@
 
 #include <exception>
 
+#ifdef __GNUC__
+#define MZQTDLL_API
+#else
+#ifdef MZQTDLL_EXPORTS
+#ifndef MZQTDLL_API
+#define MZQTDLL_API __declspec(dllexport)
+#endif
+#else
+#ifndef MZQTDLL_API
+#define MZQTDLL_API __declspec(dllimport)
+#endif
+#endif
+#endif
+
 namespace mzqt {
 
   /*! Base exception class
@@ -34,11 +48,11 @@ namespace mzqt {
 
   public:
 
-    explicit Exception(const std::string &msg = "", const char *file = 0,
+    MZQTDLL_API explicit Exception(const std::string &msg = "", const char *file = 0,
         int line = 0);
-    virtual ~Exception() throw ();
+    MZQTDLL_API virtual ~Exception() throw ();
 
-    virtual const char *what() const throw ();
+    MZQTDLL_API virtual const char *what() const throw ();
 
   protected:
     std::string msg_;
@@ -50,8 +64,8 @@ namespace mzqt {
 
   public:
 
-    explicit Abort(const std::string &msg = "");
-    virtual ~Abort() throw ();
+    MZQTDLL_API explicit Abort(const std::string &msg = "");
+    MZQTDLL_API virtual ~Abort() throw ();
 
   };
 

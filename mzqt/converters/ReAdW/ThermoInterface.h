@@ -32,6 +32,20 @@
 #include <mzqt/converters/ReAdW/FilterLine.h>
 #include <mzqt/converters/ReAdW/XRawfile.h>
 
+#ifdef __GNUC__
+#define MZQTDLL_API
+#else
+#ifdef MZQTDLL_EXPORTS
+#ifndef MZQTDLL_API
+#define MZQTDLL_API __declspec(dllexport)
+#endif
+#else
+#ifndef MZQTDLL_API
+#define MZQTDLL_API __declspec(dllimport)
+#endif
+#endif
+#endif
+
 namespace mzqt {
 
   typedef struct _datapeak {
@@ -42,8 +56,8 @@ namespace mzqt {
   class ThermoInterfaceException: public Exception {
 
   public:
-    explicit ThermoInterfaceException(const std::string &msg = "");
-    virtual ~ThermoInterfaceException() throw ();
+    MZQTDLL_API explicit ThermoInterfaceException(const std::string &msg = "");
+    MZQTDLL_API virtual ~ThermoInterfaceException() throw ();
   };
 
 
@@ -68,29 +82,29 @@ namespace mzqt {
 
 
   public:
-    ThermoInterface(void);
-    ~ThermoInterface(void);
+    MZQTDLL_API ThermoInterface(void);
+    MZQTDLL_API ~ThermoInterface(void);
 
-    virtual void initInterface(void);
-    void initUVScan();
+    MZQTDLL_API virtual void initInterface(void);
+    MZQTDLL_API void initUVScan();
 
-    void setMSController();
-    void setUVController();
+    MZQTDLL_API void setMSController();
+    MZQTDLL_API void setUVController();
 
-    virtual bool setInputFile(const QString& fileName);
-    virtual void setCentroiding(bool centroid);
-    virtual void setDeisotoping(bool deisotope);
-    virtual void setCompression(bool compression);
-    virtual void forcePrecursorFromFilter(bool mode);
-    virtual void setVerbose(bool verbose);
-    virtual void setShotgunFragmentation(bool /*sf*/)
+    MZQTDLL_API virtual bool setInputFile(const QString& fileName);
+    MZQTDLL_API virtual void setCentroiding(bool centroid);
+    MZQTDLL_API virtual void setDeisotoping(bool deisotope);
+    MZQTDLL_API virtual void setCompression(bool compression);
+    MZQTDLL_API virtual void forcePrecursorFromFilter(bool mode);
+    MZQTDLL_API virtual void setVerbose(bool verbose);
+    MZQTDLL_API virtual void setShotgunFragmentation(bool /*sf*/)
     {
     }
-    virtual void setLockspray(bool /*ls*/)
+    MZQTDLL_API virtual void setLockspray(bool /*ls*/)
     {
     }
-    virtual Scan* getScan(void);
-    virtual UVScan* getUVScan(void);
+    MZQTDLL_API virtual Scan* getScan(void);
+    MZQTDLL_API virtual UVScan* getUVScan(void);
   };
 
 }

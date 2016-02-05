@@ -33,11 +33,25 @@
 #include <mzqt/converters/MassWolf/DACSpectrum.h>
 #include <mzqt/converters/MassWolf/DACExScanStats.h>
 
+#ifdef __GNUC__
+#define MZQTDLL_API
+#else
+#ifdef MZQTDLL_EXPORTS
+#ifndef MZQTDLL_API
+#define MZQTDLL_API __declspec(dllexport)
+#endif
+#else
+#ifndef MZQTDLL_API
+#define MZQTDLL_API __declspec(dllimport)
+#endif
+#endif
+#endif
+
 namespace mzqt {
 
   struct MassLynxScanHeader {
 
-    MassLynxScanHeader();
+    MZQTDLL_API MassLynxScanHeader();
 
     int funcNum;
     int scanNum;
@@ -56,8 +70,8 @@ namespace mzqt {
   class MassLynxInterfaceException: public Exception {
 
   public:
-    explicit MassLynxInterfaceException(const std::string &msg = "");
-    virtual ~MassLynxInterfaceException() throw ();
+    MZQTDLL_API explicit MassLynxInterfaceException(const std::string &msg = "");
+    MZQTDLL_API virtual ~MassLynxInterfaceException() throw ();
   };
 
   class MassLynxInterface: public InstrumentInterface {
@@ -97,31 +111,31 @@ namespace mzqt {
     void preprocessUVFunctions();
 
   public:
-    MassLynxInterface(void);
-    ~MassLynxInterface(void);
+    MZQTDLL_API MassLynxInterface(void);
+    MZQTDLL_API ~MassLynxInterface(void);
 
-    virtual void initInterface(void);
-    bool preprocessFunctions(bool uv);
-    virtual bool setInputFile(const QString& fileName);
-    virtual void setCentroiding(bool centroid);
-    virtual void setDeisotoping(bool deisotope);
-    virtual void setCompression(bool compression);
-    virtual void setVerbose(bool verbose);
-    virtual void setFunctionFilter(int functionNumber);
-    virtual Scan* getScan(void);
-    virtual UVScan *getUVScan(void);
+    MZQTDLL_API virtual void initInterface(void);
+    MZQTDLL_API bool preprocessFunctions(bool uv);
+    MZQTDLL_API virtual bool setInputFile(const QString& fileName);
+    MZQTDLL_API virtual void setCentroiding(bool centroid);
+    MZQTDLL_API virtual void setDeisotoping(bool deisotope);
+    MZQTDLL_API virtual void setCompression(bool compression);
+    MZQTDLL_API virtual void setVerbose(bool verbose);
+    MZQTDLL_API virtual void setFunctionFilter(int functionNumber);
+    MZQTDLL_API virtual Scan* getScan(void);
+    MZQTDLL_API virtual UVScan *getUVScan(void);
 
-    virtual void setShotgunFragmentation(bool /*sf*/)
+    MZQTDLL_API virtual void setShotgunFragmentation(bool /*sf*/)
     {
     }
-    ;
-    virtual void setLockspray(bool /*ls*/)
+
+    MZQTDLL_API virtual void setLockspray(bool /*ls*/)
     {
     }
-    ;
 
-    const MassLynxScanHeader *getCurScanHeader();
-    const MassLynxScanHeader *getCurUVScanHeader();
+
+    MZQTDLL_API const MassLynxScanHeader *getCurScanHeader();
+    MZQTDLL_API const MassLynxScanHeader *getCurUVScanHeader();
   };
 
 }
