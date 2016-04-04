@@ -765,6 +765,133 @@ void XRawfile::GetAveragedMassSpectrum(const QList<int> &scanNumbers,
 
 }
 
+void XRawfile::GetChromatogram(long chroTrace, QVector<double> &times,
+                               QVector<double> &intensities)
+{
+  times.clear();
+  intensities.clear();
+
+  // example for GetChroData to return the MS TIC trace
+  typedef struct _datapeak
+  {
+  double dTime;
+  double dIntensity;
+  } ChroDataPeak;
+
+  //get dispId
+  const char *name = "GetChroData";
+  DISPID dispid = dispIDofName(name, disp);
+  assert(dispid != DISPID_UNKNOWN);
+
+  //init the variants
+  const int nArgs = 14;
+  VARIANTARG varg[nArgs];
+  for (int i = 0; i < nArgs; ++i) {
+    ::VariantInit(&varg[i]);
+  }
+
+  VARIANT varChroData;
+  VariantInit(&varChroData);
+  VARIANT varPeakFlags;
+  VariantInit(&varPeakFlags);
+  long nArraySize = 0;
+  double startTime = 0.0, endTime = 0.0, delay = 0.0;
+  long smoothingType = 0, smoothingValue = 0;
+  QString massRanges1 = "", massRanges2 = "", filter = "";
+  long nChroType2 = 0, nChroOperator = 0;
+  //TODO change array index
+  varg[0].vt = VT_BYREF | VT_I4;
+  varg[0].plVal = &nArraySize;
+  varg[1].vt = VT_BYREF | VT_VARIANT;
+  varg[1].pvarVal = &varPeakFlags;
+  varg[2].vt = VT_BYREF | VT_VARIANT;
+  varg[2].pvarVal = &varChroData;
+  varg[3].vt = VT_I4;
+  varg[3].lVal = smoothingValue;
+  varg[4].vt = VT_I4;
+  varg[4].lVal = smoothingType;
+  varg[5].vt = VT_BYREF | VT_R8;
+  varg[5].pdblVal = &endTime;
+  varg[6].vt = VT_BYREF | VT_R8;
+  varg[6].pdblVal = &startTime;
+  varg[7].vt = VT_R8;
+  varg[7].dblVal = delay;
+  varg[8].vt = VT_BSTR;
+  varg[8].bstrVal = QStringToBSTR(massRanges2);
+  varg[9].vt = VT_BSTR;
+  varg[9].bstrVal = QStringToBSTR(massRanges1);
+  varg[10].vt = VT_BSTR;
+  varg[10].bstrVal = QStringToBSTR(filter);
+  varg[11].vt = VT_I4;
+  varg[11].lVal = nChroType2;
+  varg[12].vt = VT_I4;
+  varg[12].lVal = nChroOperator;
+  varg[13].vt = VT_I4;
+  varg[13].lVal = chroTrace;
+
+  //set up the parameter
+  DISPPARAMS params;
+  params.cArgs = nArgs;
+  params.rgdispidNamedArgs = 0;
+  params.cNamedArgs = 0;
+  params.rgvarg = varg;
+
+  //init the exception
+  EXCEPINFO excepinfo;
+  memset(&excepinfo, 0, sizeof(excepinfo));
+  UINT argerr = 0;
+
+  //init the result
+  VARIANTARG res;
+  ::VariantInit(&res);
+
+  HRESULT hres = disp->Invoke(dispid, IID_NULL, LOCALE_USER_DEFAULT,
+                              DISPATCH_METHOD | DISPATCH_PROPERTYGET, &params,
+                              &res, &excepinfo, &argerr);
+
+  checkForError(name);
+
+  if (FAILED(hres))
+    THROW_MZQT_IDISPATCHEXCEPT_HRES(hres);
+
+
+  if( nArraySize ) {
+
+    // Get a pointer to the SafeArray
+    SAFEARRAY FAR* psa = varChroData.parray;
+    ChroDataPeak* pDataPeaks = NULL;
+    SafeArrayAccessData( psa, (void**)(&pDataPeaks) );
+    for( long j=0; j<nArraySize; j++ )
+    {
+      double dTime = pDataPeaks[j].dTime;
+      double dIntensity = pDataPeaks[j].dIntensity;
+      times.append(dTime);
+      intensities.append(dIntensity);
+    }
+    // Release the data handle
+    SafeArrayUnaccessData( psa );
+  }
+
+  if(varChroData.vt != VT_EMPTY )
+  {
+    SAFEARRAY FAR* psa =
+        varChroData.parray;
+    varChroData.parray = NULL;
+    // Delete the SafeArray
+    SafeArrayDestroy( psa );
+  }
+
+  if(varPeakFlags.vt != VT_EMPTY )
+  {
+    SAFEARRAY FAR* psa =
+        varPeakFlags.parray;
+    varPeakFlags.parray = NULL;
+    // Delete the SafeArray
+    SafeArrayDestroy( psa );
+  }
+
+}
+
 void XRawfile::GetTrailerExtraValueForScanNum(int nScanNumber,
     const QString &szLabel, QVariant &value)
 {

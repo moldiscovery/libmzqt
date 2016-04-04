@@ -74,7 +74,7 @@ namespace mzqt {
                 std::vector<CoordinateNameValue>::size_type index,
                 ScanCoordinateType &name, std::string &value)
         {
-            if (index >= 0 && index < coordinates_.size()) {
+            if (index < coordinates_.size()) {
                 const CoordinateNameValue &coordinate = coordinates_[index];
                 name = coordinate.first;
                 value = coordinate.second;

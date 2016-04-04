@@ -90,6 +90,7 @@ namespace mzqt {
 
     MZQTDLL_API void setMSController();
     MZQTDLL_API void setUVController();
+    MZQTDLL_API void setAnalogController();
 
     MZQTDLL_API virtual bool setInputFile(const QString& fileName);
     MZQTDLL_API virtual void setCentroiding(bool centroid);
@@ -103,8 +104,11 @@ namespace mzqt {
     MZQTDLL_API virtual void setLockspray(bool /*ls*/)
     {
     }
+
     MZQTDLL_API virtual Scan* getScan(void);
     MZQTDLL_API virtual UVScan* getUVScan(void);
+    MZQTDLL_API void getChromatogram(long chroTrace, QVector<double> &times,
+                                     QVector<double> &intensities);
   };
 
 }

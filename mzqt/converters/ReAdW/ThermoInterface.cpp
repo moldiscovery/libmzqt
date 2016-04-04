@@ -135,6 +135,11 @@ void ThermoInterface::setUVController()
   xrawfile2_.SetCurrentController(PDA_CONTROLLER_TYPE, 1);
 }
 
+void ThermoInterface::setAnalogController()
+{
+  xrawfile2_.SetCurrentController(ANALOG_CONTROLLER_TYPE, 1);
+}
+
 bool ThermoInterface::setInputFile(const QString& filename)
 {
   if (QFile::exists(filename) == false)
@@ -1090,4 +1095,10 @@ UVScan *ThermoInterface::getUVScan(void)
   }
 
   return curScan;
+}
+
+void ThermoInterface::getChromatogram(long chroTrace, QVector<double> &times,
+                                     QVector<double> &intensities)
+{
+  xrawfile2_.GetChromatogram(chroTrace, times, intensities);
 }

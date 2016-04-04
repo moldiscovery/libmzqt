@@ -109,9 +109,10 @@ namespace mzqt {
 
     MZQTDLL_API void GetFilters(QStringList &filters);
 
-
-
     MZQTDLL_API void GetNumberOfControllersOfType(int controllerType, int &number);
+
+    MZQTDLL_API void GetChromatogram(long chroTrace, QVector<double> &times,
+                                     QVector<double> &intensities);
 
   protected:
     void checkForError(const QString &callName);
