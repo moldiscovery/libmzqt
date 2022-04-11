@@ -1,0 +1,4 @@
+*.obj
+moc_*.h
+moc_*.cpp
+*.vc.pdb

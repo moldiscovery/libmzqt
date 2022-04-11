@@ -32,8 +32,10 @@
 
 #include <mzqt/common/IDispatch.h>
 
-#ifdef __GNUC__
+#if defined(__GNUC__) || defined(MZQT_STATIC)
+#ifndef MZQTDLL_API
 #define MZQTDLL_API
+#endif
 #else
 #ifdef MZQTDLL_EXPORTS
 #define MZQTDLL_API __declspec(dllexport)

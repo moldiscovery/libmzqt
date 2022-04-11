@@ -30,10 +30,17 @@
 #include <mzqt/common/Exception.h>
 #include <mzqt/common/InstrumentInterface.h>
 #include <mzqt/converters/ReAdW/FilterLine.h>
-#include <mzqt/converters/ReAdW/XRawfile.h>
 
-#ifdef __GNUC__
+#ifdef MZQT_XRAWFILE_WRAPPER
+#include <mzqt/converters/ReAdW/xrawfilewrapper.h>
+#else
+#include <mzqt/converters/ReAdW/XRawfile.h>
+#endif
+
+#if defined(__GNUC__) || defined(MZQT_STATIC)
+#ifndef MZQTDLL_API
 #define MZQTDLL_API
+#endif
 #else
 #ifdef MZQTDLL_EXPORTS
 #ifndef MZQTDLL_API
@@ -64,7 +71,11 @@ namespace mzqt {
   class ThermoInterface: public InstrumentInterface {
   private:
 
+#ifdef MZQT_XRAWFILE_WRAPPER
+    XRawfileWrapper xrawfile2_;
+#else
     XRawfile xrawfile2_;
+#endif
 
     int IXRawfileVersion_; // which IXRawfile interface was initialized?
 

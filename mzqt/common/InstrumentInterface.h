@@ -36,6 +36,19 @@
 
 #include <mzqt/common/InstrumentInfo.h>
 
+//typedef to allow to work with both XRawFile and XRawFileWrapper file api
+#ifdef MZQT_XRAWFILE_WRAPPER
+  typedef long int_t;
+  typedef long bool_t;
+  typedef QVector<double> double_container;
+  typedef QVector<long> int_container;
+#else
+  typedef int int_t;
+  typedef bool bool_t;
+  typedef QList<double> double_container;
+  typedef QList<long> int_container;
+#endif
+
 namespace mzqt {
 
   class Scan;
@@ -47,8 +60,8 @@ namespace mzqt {
 
     long totalNumScans_;
     long curScanNum_;
-    int firstScanNumber_;
-    int lastScanNumber_;
+    int_t firstScanNumber_;
+    int_t lastScanNumber_;
 
     double startTimeInSec_;
     double endTimeInSec_;
@@ -70,8 +83,8 @@ namespace mzqt {
     //UV
     long totalNumUVScans_;
     long curUVScanNum_;
-    int firstUVScanNumber_;
-    int lastUVScanNumber_;
+    int_t firstUVScanNumber_;
+    int_t lastUVScanNumber_;
 
     // used for MassLynx and MassHunter
     std::vector<QString> inputFileNameList_;
@@ -82,7 +95,6 @@ namespace mzqt {
     InstrumentInterface(void);
 
     virtual ~InstrumentInterface(void);
-
 
     virtual void initInterface(void) = 0;
     virtual bool setInputFile(const QString& fileName) = 0;

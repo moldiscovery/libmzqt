@@ -34,7 +34,7 @@ IDispatchException::IDispatchException(HRESULT hres, const char *file, int line)
   Exception("", file, line)
 {
   std::string s;
-  unsigned long code = HRESULT_CODE(hres);
+  long code = HRESULT_CODE(hres);
   switch (code) {
 
   case S_OK:

@@ -51,10 +51,16 @@ typedef struct _peak {
     string info;
 } Peak;
 
+int Scan::getNumDataPoints(void) const
+{
+    return numDataPoints_;
+}
+
 void Scan::setNumDataPoints(int numDataPoints)
 {
-    //Debug::dbg(Debug::HIGH) << "setting datapoints: " << numDataPoints
-    //                        << Debug::ENDL;
+    Debug::dbg(Debug::MEDIUM) << "setting datapoints: " << numDataPoints
+                            << Debug::ENDL;
+
     if (numDataPoints == 0) {
         numDataPoints_ = numDataPoints;
         return;
@@ -67,6 +73,28 @@ void Scan::setNumDataPoints(int numDataPoints)
     mzArray_ = new double[numDataPoints_];
     intensityArray_ = new double[numDataPoints_];
 }
+
+#if 0
+const double* Scan::getMZArray() const
+{
+  return mzArray_;
+}
+
+const double* Scan::getIntensityArray() const
+{
+  return intensityArray_;
+}
+#else
+void Scan::getMZArray(double **a) const
+{
+  *a = mzArray_;
+}
+
+void Scan::getIntensityArray(double **a) const
+{
+  *a = intensityArray_;
+}
+#endif
 
 void Scan::resetNumDataPoints(int numDataPoints)
 {

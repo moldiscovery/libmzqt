@@ -33,8 +33,10 @@
 #include <mzqt/converters/MassWolf/DACSpectrum.h>
 #include <mzqt/converters/MassWolf/DACExScanStats.h>
 
-#ifdef __GNUC__
+#if defined(__GNUC__) || defined(MZQT_STATIC)
+#ifndef MZQTDLL_API
 #define MZQTDLL_API
+#endif
 #else
 #ifdef MZQTDLL_EXPORTS
 #ifndef MZQTDLL_API

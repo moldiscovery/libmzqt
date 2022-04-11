@@ -1,0 +1,1438 @@
+﻿// Created by Microsoft (R) C/C++ Compiler Version 14.16.27031.1 (7850fc4b).
+//
+// c:\users\fabien\source\repos\consoleapplication1\consoleapplication1\debug\xrawfile2_x64.tlh
+//
+// C++ source equivalent of Win32 type library C:\Program Files\Thermo\MSFileReader\XRawfile2_x64.dll
+// compiler-generated file created 07/04/19 at 11:32:33 - DO NOT EDIT!
+
+#pragma once
+#pragma pack(push, 8)
+
+#include <comdef.h>
+
+//
+// Forward references and typedefs
+//
+
+struct __declspec(uuid("f0c5f3e3-4f2a-443e-a74d-0aabe3237494"))
+/* LIBID */ __MSFileReaderLib;
+enum __MIDL___MIDL_itf_XRawfile2_0000_0000_0001;
+enum __MIDL___MIDL_itf_XRawfile2_0000_0000_0002;
+enum __MIDL___MIDL_itf_XRawfile2_0000_0000_0003;
+enum __MIDL___MIDL_itf_XRawfile2_0000_0000_0004;
+enum MS_PacketTypes;
+enum MS_Polarity;
+enum MS_ScanData;
+enum MS_Dep;
+enum MS_Wideband;
+enum MS_SourceCID;
+enum MS_SourceCIDType;
+enum MS_MSOrder;
+enum MS_ScanType;
+enum MS_TurboScan;
+enum MS_IonizationMode;
+enum MS_Corona;
+enum MS_Detector;
+enum MS_PrecursorEnergy;
+enum MS_Multiplex;
+enum MS_Param_A;
+enum MS_Param_B;
+enum MS_Param_F;
+enum MS_Param_K;
+enum MS_Param_R;
+enum MS_Param_V;
+enum MS_Activations;
+struct MS_FullMSOrderPrecursorInfo;
+struct MS_MassRange;
+struct MS_ScanEvent;
+struct MS_ScanIndex;
+struct MS_ScanIndex64;
+struct MS_UVScanIndex;
+struct MS_DataPeak;
+struct MS_PrecursorInfo;
+struct __declspec(uuid("11b488a0-69b1-41fc-a660-fe8df2a31f5b"))
+/* dual interface */ IXRawfile;
+struct __declspec(uuid("55a25ff7-f437-471f-909a-d7f2b5930805"))
+/* dual interface */ IXRawfile2;
+struct __declspec(uuid("19a00b1e-1559-42b1-9a46-08a5e599edee"))
+/* dual interface */ IXRawfile3;
+struct __declspec(uuid("e7cf6760-11cd-4260-b5b0-fce2ad97547b"))
+/* dual interface */ IXRawfile4;
+struct __declspec(uuid("06f53853-e43c-4f30-9e5f-d1b3668f0c3c"))
+/* dual interface */ IXRawfile5;
+struct __declspec(uuid("55ea38b7-5419-4be4-9198-3e4d78e64632"))
+/* dual interface */ IXVirMS;
+enum MS_DataTypes;
+struct __declspec(uuid("7ff032a3-fb2a-46ef-a579-039da67c0aaa"))
+/* dual interface */ IXVirMS64;
+struct MS_ScanDataStruct;
+struct __declspec(uuid("796cb3fe-c696-4afe-b719-18246f38a740"))
+/* dual interface */ IXVirUV;
+struct /* coclass */ MSFileReader_XRawfile;
+struct /* coclass */ MSFileReader_XVirMS;
+struct /* coclass */ MSFileReader_XVirUV;
+
+//
+// Smart pointer typedef declarations
+//
+
+_COM_SMARTPTR_TYPEDEF(IXRawfile, __uuidof(IXRawfile));
+_COM_SMARTPTR_TYPEDEF(IXRawfile2, __uuidof(IXRawfile2));
+_COM_SMARTPTR_TYPEDEF(IXRawfile3, __uuidof(IXRawfile3));
+_COM_SMARTPTR_TYPEDEF(IXRawfile4, __uuidof(IXRawfile4));
+_COM_SMARTPTR_TYPEDEF(IXRawfile5, __uuidof(IXRawfile5));
+_COM_SMARTPTR_TYPEDEF(IXVirMS, __uuidof(IXVirMS));
+_COM_SMARTPTR_TYPEDEF(IXVirMS64, __uuidof(IXVirMS64));
+_COM_SMARTPTR_TYPEDEF(IXVirUV, __uuidof(IXVirUV));
+
+//
+// Type library items
+//
+
+enum __MIDL___MIDL_itf_XRawfile2_0000_0000_0001
+{
+    MS_TRAILER_NOT_AVAILABLE = -1
+};
+
+enum __MIDL___MIDL_itf_XRawfile2_0000_0000_0002
+{
+    MS_SCAN_TYPE_NOT_SPECIFIED = -1
+};
+
+enum __MIDL___MIDL_itf_XRawfile2_0000_0000_0003
+{
+    MS_MAX_NUM_MASS_RANGES = 100
+};
+
+enum __MIDL___MIDL_itf_XRawfile2_0000_0000_0004
+{
+    MS_MAX_MS_ORDER = 100
+};
+
+enum MS_PacketTypes
+{
+    MS_PacketTypes_PROF_SP_TYPE = 0,
+    MS_PacketTypes_LR_SP_TYPE = 1,
+    MS_PacketTypes_HR_SP_TYPE = 2,
+    MS_PacketTypes_PROF_INDEX_TYPE = 3,
+    MS_PacketTypes_COMP_ACC_SP_TYPE = 4,
+    MS_PacketTypes_STD_ACC_SP_TYPE = 5,
+    MS_PacketTypes_STD_UNCAL_SP_TYPE = 6,
+    MS_PacketTypes_ACC_MASS_PROF_SP_TYPE = 7,
+    MS_PacketTypes_DG_xAQR_TYPE = 8,
+    MS_PacketTypes_DG_xAQR_INDEX_TYPE = 9,
+    MS_PacketTypes_DG_xASR_TYPE = 10,
+    MS_PacketTypes_DG_xASR_INDEX_TYPE = 11,
+    MS_PacketTypes_CHANNEL_UV_TYPE = 12,
+    MS_PacketTypes_MS_ANALOG_TYPE = 13,
+    MS_PacketTypes_PROF_SP_TYPE2 = 14,
+    MS_PacketTypes_LR_SP_TYPE2 = 15,
+    MS_PacketTypes_PROF_SP_TYPE3 = 16,
+    MS_PacketTypes_LR_SP_TYPE3 = 17
+};
+
+enum MS_Polarity
+{
+    MS_Negative = 0,
+    MS_Positive = 1,
+    MS_AnyPolarity = 2
+};
+
+enum MS_ScanData
+{
+    MS_Centroid = 0,
+    MS_Profile = 1,
+    MS_AcceptAnyScanData = 2
+};
+
+enum MS_Dep
+{
+    MS_NotDependent = 0,
+    MS_Dependent = 1,
+    MS_AcceptAnyDep = 2
+};
+
+enum MS_Wideband
+{
+    MS_WidebandOff = 0,
+    MS_WidebandOn = 1,
+    MS_AcceptAnyWideband = 2
+};
+
+enum MS_SourceCID
+{
+    MS_SourceCIDon = 0,
+    MS_SourceCIDoff = 1,
+    MS_AcceptAnySourceCID = 2
+};
+
+enum MS_SourceCIDType
+{
+    MS_SourceCIDTypeNoValue = 0,
+    MS_SourceCIDTypeSingleValue = 1,
+    MS_SourceCIDTypeRamp = 2,
+    MS_SourceCIDTypeSIM = 3,
+    MS_AcceptAnySourceCIDType = 4
+};
+
+enum MS_MSOrder
+{
+    MS_ng = -3,
+    MS_nl = -2,
+    MS_par = -1,
+    MS_AcceptAnyMSorder = 0,
+    MS_ms = 1,
+    MS_ms2 = 2,
+    MS_ms3 = 3,
+    MS_ms4 = 4,
+    MS_ms5 = 5,
+    MS_ms6 = 6,
+    MS_ms7 = 7,
+    MS_ms8 = 8,
+    MS_ms9 = 9,
+    MS_ms10 = 10,
+    MS_ms11 = 11,
+    MS_ms12 = 12,
+    MS_ms13 = 13,
+    MS_ms14 = 14,
+    MS_ms15 = 15,
+    MS_ms16 = 16,
+    MS_ms17 = 17,
+    MS_ms18 = 18,
+    MS_ms19 = 19,
+    MS_ms20 = 20,
+    MS_ms21 = 21,
+    MS_ms22 = 22,
+    MS_ms23 = 23,
+    MS_ms24 = 24,
+    MS_ms25 = 25,
+    MS_ms26 = 26,
+    MS_ms27 = 27,
+    MS_ms28 = 28,
+    MS_ms29 = 29,
+    MS_ms30 = 30,
+    MS_ms31 = 31,
+    MS_ms32 = 32,
+    MS_ms33 = 33,
+    MS_ms34 = 34,
+    MS_ms35 = 35,
+    MS_ms36 = 36,
+    MS_ms37 = 37,
+    MS_ms38 = 38,
+    MS_ms39 = 39,
+    MS_ms40 = 40,
+    MS_ms41 = 41,
+    MS_ms42 = 42,
+    MS_ms43 = 43,
+    MS_ms44 = 44,
+    MS_ms45 = 45,
+    MS_ms46 = 46,
+    MS_ms47 = 47,
+    MS_ms48 = 48,
+    MS_ms49 = 49,
+    MS_ms50 = 50,
+    MS_ms51 = 51,
+    MS_ms52 = 52,
+    MS_ms53 = 53,
+    MS_ms54 = 54,
+    MS_ms55 = 55,
+    MS_ms56 = 56,
+    MS_ms57 = 57,
+    MS_ms58 = 58,
+    MS_ms59 = 59,
+    MS_ms60 = 60,
+    MS_ms61 = 61,
+    MS_ms62 = 62,
+    MS_ms63 = 63,
+    MS_ms64 = 64,
+    MS_ms65 = 65,
+    MS_ms66 = 66,
+    MS_ms67 = 67,
+    MS_ms68 = 68,
+    MS_ms69 = 69,
+    MS_ms70 = 70,
+    MS_ms71 = 71,
+    MS_ms72 = 72,
+    MS_ms73 = 73,
+    MS_ms74 = 74,
+    MS_ms75 = 75,
+    MS_ms76 = 76,
+    MS_ms77 = 77,
+    MS_ms78 = 78,
+    MS_ms79 = 79,
+    MS_ms80 = 80,
+    MS_ms81 = 81,
+    MS_ms82 = 82,
+    MS_ms83 = 83,
+    MS_ms84 = 84,
+    MS_ms85 = 85,
+    MS_ms86 = 86,
+    MS_ms87 = 87,
+    MS_ms88 = 88,
+    MS_ms89 = 89,
+    MS_ms90 = 90,
+    MS_ms91 = 91,
+    MS_ms92 = 92,
+    MS_ms93 = 93,
+    MS_ms94 = 94,
+    MS_ms95 = 95,
+    MS_ms96 = 96,
+    MS_ms97 = 97,
+    MS_ms98 = 98,
+    MS_ms99 = 99,
+    MS_ms100 = 100
+};
+
+enum MS_ScanType
+{
+    MS_Fullsc = 0,
+    MS_Zoomsc = 1,
+    MS_SIMsc = 2,
+    MS_SRMsc = 3,
+    MS_CRMsc = 4,
+    MS_AcceptAnyScanType = 5,
+    MS_Q1MSsc = 6,
+    MS_Q3MSsc = 7
+};
+
+enum MS_TurboScan
+{
+    MS_TurboScanOn = 0,
+    MS_TurboScanOff = 1,
+    MS_AcceptAnyTurboScan = 2
+};
+
+enum MS_IonizationMode
+{
+    MS_ElectronImpact = 0,
+    MS_ChemicalIonization = 1,
+    MS_FastAtomBombardment = 2,
+    MS_Electrospray = 3,
+    MS_AtmosphericPressureChemicalIonization = 4,
+    MS_Nanospray = 5,
+    MS_Thermospray = 6,
+    MS_FieldDesorption = 7,
+    MS_MatrixAssistedLaserDesorptionIonization = 8,
+    MS_GlowDischarge = 9,
+    MS_AcceptAnyIonizationMode = 10
+};
+
+enum MS_Corona
+{
+    MS_CoronaOn = 0,
+    MS_CoronaOff = 1,
+    MS_AcceptAnyCorona = 2
+};
+
+enum MS_Detector
+{
+    MS_DetectorValid = 0,
+    MS_AcceptAnyDetector = 1
+};
+
+enum MS_PrecursorEnergy
+{
+    MS_PrecursorEnergyValid = 0,
+    MS_AcceptAnyPrecursorEnergy = 1
+};
+
+enum MS_Multiplex
+{
+    MS_MultiplexOff = 0,
+    MS_MultiplexOn = 1,
+    MS_AcceptAnyMultiplex = 2
+};
+
+enum MS_Param_A
+{
+    MS_Param_A_Off = 0,
+    MS_Param_A_On = 1,
+    MS_AcceptAnyParam_A = 2
+};
+
+enum MS_Param_B
+{
+    MS_Param_B_Off = 0,
+    MS_Param_B_On = 1,
+    MS_AcceptAnyParam_B = 2
+};
+
+enum MS_Param_F
+{
+    MS_Param_F_Off = 0,
+    MS_Param_F_On = 1,
+    MS_AcceptAnyParam_F = 2
+};
+
+enum MS_Param_K
+{
+    MS_Param_K_Off = 0,
+    MS_Param_K_On = 1,
+    MS_AcceptAnyParam_K = 2
+};
+
+enum MS_Param_R
+{
+    MS_Param_R_Off = 0,
+    MS_Param_R_On = 1,
+    MS_AcceptAnyParam_R = 2
+};
+
+enum MS_Param_V
+{
+    MS_Param_V_Off = 0,
+    MS_Param_V_On = 1,
+    MS_AcceptAnyParam_V = 2
+};
+
+enum MS_Activations
+{
+    MS_RCIDactivation = 0,
+    MS_RMPDactivation = 1,
+    MS_RECDactivation = 2,
+    MS_RPQDactivation = 3,
+    MS_RETDactivation = 4,
+    MS_RHCDactivation = 5,
+    MS_RAnyactivation = 6,
+    MS_RSAactivation = 7,
+    MS_RPTRactivation = 8,
+    MS_RNETDactivation = 9,
+    MS_RNPTRactivation = 10
+};
+
+#pragma pack(push, 8)
+
+struct MS_FullMSOrderPrecursorInfo
+{
+    double dPrecursorMass;
+    double dIsolationWidth;
+    double dCollisionEnergy;
+    long uiCollisionEnergyValid;
+    unsigned short bRangeIsValid;
+    double dFirstPrecursorMass;
+    double dLastPrecursorMass;
+    double dIsolationWidthOffset;
+};
+
+#pragma pack(pop)
+
+#pragma pack(push, 8)
+
+struct MS_MassRange
+{
+    double dLowMass;
+    double dHighMass;
+};
+
+#pragma pack(pop)
+
+#pragma pack(push, 8)
+
+struct MS_ScanEvent
+{
+    long bIsValid;
+    enum MS_ScanData eScanData;
+    enum MS_Polarity ePolarity;
+    enum MS_MSOrder eMSOrder;
+    enum MS_Dep eDependent;
+    enum MS_Wideband eWideband;
+    long bCustom;
+    enum MS_SourceCID eSourceCID;
+    enum MS_ScanType eScanType;
+    enum MS_TurboScan eTurboScan;
+    enum MS_IonizationMode eIonizationMode;
+    enum MS_Corona eCorona;
+    enum MS_Detector eDetector;
+    double dDetectorValue;
+    enum MS_SourceCIDType eSourceCIDType;
+    long nlScanTypeIndex;
+    long nNumMassRanges;
+    struct MS_MassRange arrMassRanges[100];
+    long nNumPrecursorMasses;
+    double arrPrecursorMasses[100];
+    double arrPrecursorEnergies[100];
+    long arrPrecursorEnergiesValid[100];
+    long nNumSourceFragmentationEnergies;
+    double arrSourceFragmentationEnergies[100];
+    long arrSourceFragmentationEnergiesValid[100];
+};
+
+#pragma pack(pop)
+
+#pragma pack(push, 8)
+
+struct MS_ScanIndex
+{
+    unsigned long m_ulDataOffset;
+    long m_nlTrailerOffset;
+    long m_nlScanTypeIndex;
+    int m_nScanNumber;
+    int m_nPacketType;
+    int m_nNumberPackets;
+    double m_dStartTime;
+    double m_dTIC;
+    double m_dBasePeakIntensity;
+    double m_dBasePeakMass;
+    double m_dLowMass;
+    double m_dHighMass;
+};
+
+#pragma pack(pop)
+
+#pragma pack(push, 8)
+
+struct MS_ScanIndex64
+{
+    __int64 m_llDataOffset;
+    long m_nlTrailerOffset;
+    long m_nlScanTypeIndex;
+    int m_nScanNumber;
+    int m_nPacketType;
+    int m_nNumberPackets;
+    double m_dStartTime;
+    double m_dTIC;
+    double m_dBasePeakIntensity;
+    double m_dBasePeakMass;
+    double m_dLowMass;
+    double m_dHighMass;
+};
+
+#pragma pack(pop)
+
+#pragma pack(push, 8)
+
+struct MS_UVScanIndex
+{
+    int nPacketType;
+    int nNumberOfChannels;
+    double dStartTime;
+    double dTIC;
+};
+
+#pragma pack(pop)
+
+#pragma pack(push, 8)
+
+struct MS_DataPeak
+{
+    double intensity;
+    double position;
+    float basepeak;
+    long scan;
+};
+
+#pragma pack(pop)
+
+#pragma pack(push, 8)
+
+struct MS_PrecursorInfo
+{
+    double dMonoIsoMZ;
+    double dIsolationMZ;
+    long nChargeState;
+    long nScanNumber;
+};
+
+#pragma pack(pop)
+
+struct __declspec(uuid("11b488a0-69b1-41fc-a660-fe8df2a31f5b"))
+IXRawfile : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall Open (
+        BSTR szFileName ) = 0;
+      virtual HRESULT __stdcall Close ( ) = 0;
+      virtual HRESULT __stdcall GetFileName (
+        BSTR * pbstrFileName ) = 0;
+      virtual HRESULT __stdcall GetCreatorID (
+        BSTR * pbstrCreatorID ) = 0;
+      virtual HRESULT __stdcall GetVersionNumber (
+        long * pnVersion ) = 0;
+      virtual HRESULT __stdcall GetCreationDate (
+        DATE * pCreationDate ) = 0;
+      virtual HRESULT __stdcall IsError (
+        long * pbIsError ) = 0;
+      virtual HRESULT __stdcall IsNewFile (
+        long * pbIsNewFile ) = 0;
+      virtual HRESULT __stdcall GetErrorCode (
+        long * pnErrorCode ) = 0;
+      virtual HRESULT __stdcall GetErrorMessage (
+        BSTR * pbstrErrorMessage ) = 0;
+      virtual HRESULT __stdcall GetWarningMessage (
+        BSTR * pbstrWarningMessage ) = 0;
+      virtual HRESULT __stdcall GetSeqRowNumber (
+        long * pnSeqRowNumber ) = 0;
+      virtual HRESULT __stdcall GetSeqRowSampleType (
+        long * pnSampleType ) = 0;
+      virtual HRESULT __stdcall GetSeqRowDataPath (
+        BSTR * pbstrDataPath ) = 0;
+      virtual HRESULT __stdcall GetSeqRowRawFileName (
+        BSTR * pbstrRawFileName ) = 0;
+      virtual HRESULT __stdcall GetSeqRowSampleName (
+        BSTR * pbstrSampleName ) = 0;
+      virtual HRESULT __stdcall GetSeqRowSampleID (
+        BSTR * pbstrSampleID ) = 0;
+      virtual HRESULT __stdcall GetSeqRowComment (
+        BSTR * pbstrComment ) = 0;
+      virtual HRESULT __stdcall GetSeqRowLevelName (
+        BSTR * pbstrLevelName ) = 0;
+      virtual HRESULT __stdcall GetSeqRowUserText (
+        long nIndex,
+        BSTR * pbstrUserText ) = 0;
+      virtual HRESULT __stdcall GetSeqRowInstrumentMethod (
+        BSTR * pbstrInstrumentMethod ) = 0;
+      virtual HRESULT __stdcall GetSeqRowProcessingMethod (
+        BSTR * pbstrProcessingMethod ) = 0;
+      virtual HRESULT __stdcall GetSeqRowCalibrationFile (
+        BSTR * pbstrCalibrationFile ) = 0;
+      virtual HRESULT __stdcall GetSeqRowVial (
+        BSTR * pbstrVial ) = 0;
+      virtual HRESULT __stdcall GetSeqRowInjectionVolume (
+        double * pdInjVol ) = 0;
+      virtual HRESULT __stdcall GetSeqRowSampleWeight (
+        double * pdSampleWt ) = 0;
+      virtual HRESULT __stdcall GetSeqRowSampleVolume (
+        double * pdSampleVolume ) = 0;
+      virtual HRESULT __stdcall GetSeqRowISTDAmount (
+        double * pdISTDAmount ) = 0;
+      virtual HRESULT __stdcall GetSeqRowDilutionFactor (
+        double * pdDilutionFactor ) = 0;
+      virtual HRESULT __stdcall GetSeqRowUserLabel (
+        long nIndex,
+        BSTR * pbstrUserLabel ) = 0;
+      virtual HRESULT __stdcall InAcquisition (
+        long * pbInAcquisition ) = 0;
+      virtual HRESULT __stdcall GetNumberOfControllers (
+        long * pnNumControllers ) = 0;
+      virtual HRESULT __stdcall GetControllerType (
+        long nIndex,
+        long * pnControllerType ) = 0;
+      virtual HRESULT __stdcall SetCurrentController (
+        long nControllerType,
+        long nControllerNumber ) = 0;
+      virtual HRESULT __stdcall GetCurrentController (
+        long * pnControllerType,
+        long * pnControllerNumber ) = 0;
+      virtual HRESULT __stdcall GetNumSpectra (
+        long * pnNumberOfSpectra ) = 0;
+      virtual HRESULT __stdcall GetNumStatusLog (
+        long * pnNumberOfStatusLogEntries ) = 0;
+      virtual HRESULT __stdcall GetNumErrorLog (
+        long * pnNumberOfErrorLogEntries ) = 0;
+      virtual HRESULT __stdcall GetNumTuneData (
+        long * pnNumTuneData ) = 0;
+      virtual HRESULT __stdcall GetMassResolution (
+        double * pdMassResolution ) = 0;
+      virtual HRESULT __stdcall GetExpectedRunTime (
+        double * pdExpectedRunTime ) = 0;
+      virtual HRESULT __stdcall GetNumTrailerExtra (
+        long * pnNumberOfTrailerExtraEntries ) = 0;
+      virtual HRESULT __stdcall GetLowMass (
+        double * pdLowMass ) = 0;
+      virtual HRESULT __stdcall GetHighMass (
+        double * pdHighMass ) = 0;
+      virtual HRESULT __stdcall GetStartTime (
+        double * pdStartTime ) = 0;
+      virtual HRESULT __stdcall GetEndTime (
+        double * pdEndTime ) = 0;
+      virtual HRESULT __stdcall GetMaxIntegratedIntensity (
+        double * pdMaxIntegIntensity ) = 0;
+      virtual HRESULT __stdcall GetMaxIntensity (
+        long * pnMaxIntensity ) = 0;
+      virtual HRESULT __stdcall GetFirstSpectrumNumber (
+        long * pnFirstSpectrum ) = 0;
+      virtual HRESULT __stdcall GetLastSpectrumNumber (
+        long * pnLastSpectrum ) = 0;
+      virtual HRESULT __stdcall GetInstrumentID (
+        long * pnInstrumentID ) = 0;
+      virtual HRESULT __stdcall GetInletID (
+        long * pnInletID ) = 0;
+      virtual HRESULT __stdcall GetErrorFlag (
+        long * pnErrorFlag ) = 0;
+      virtual HRESULT __stdcall GetSampleVolume (
+        double * pdSampleVolume ) = 0;
+      virtual HRESULT __stdcall GetSampleWeight (
+        double * pdSampleWeight ) = 0;
+      virtual HRESULT __stdcall GetVialNumber (
+        long * pnVialNumber ) = 0;
+      virtual HRESULT __stdcall GetInjectionVolume (
+        double * pdInjectionVolume ) = 0;
+      virtual HRESULT __stdcall GetFlags (
+        BSTR * pbstrFlags ) = 0;
+      virtual HRESULT __stdcall GetAcquisitionFileName (
+        BSTR * pbstrFileName ) = 0;
+      virtual HRESULT __stdcall GetInstrumentDescription (
+        BSTR * pbstrInstrumentDescription ) = 0;
+      virtual HRESULT __stdcall GetAcquisitionDate (
+        BSTR * pbstrAcquisitionDate ) = 0;
+      virtual HRESULT __stdcall GetOperator (
+        BSTR * pbstrOperator ) = 0;
+      virtual HRESULT __stdcall GetComment1 (
+        BSTR * pbstrComment1 ) = 0;
+      virtual HRESULT __stdcall GetComment2 (
+        BSTR * pbstrComment2 ) = 0;
+      virtual HRESULT __stdcall GetSampleAmountUnits (
+        BSTR * pbstrSampleAmountUnits ) = 0;
+      virtual HRESULT __stdcall GetInjectionAmountUnits (
+        BSTR * pbstrInjectionAmountUnits ) = 0;
+      virtual HRESULT __stdcall GetSampleVolumeUnits (
+        BSTR * pbstrSampleVolumeUnits ) = 0;
+      virtual HRESULT __stdcall GetFilters (
+        VARIANT * pvarFilterArray,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall ScanNumFromRT (
+        double dRT,
+        long * pnScanNumber ) = 0;
+      virtual HRESULT __stdcall RTFromScanNum (
+        long nScanNumber,
+        double * pdRT ) = 0;
+      virtual HRESULT __stdcall GetFilterForScanNum (
+        long nScanNumber,
+        BSTR * pbstrFilter ) = 0;
+      virtual HRESULT __stdcall GetFilterForScanRT (
+        double dRT,
+        BSTR * pbstrFilter ) = 0;
+      virtual HRESULT __stdcall GetMassListFromScanNum (
+        long * pnScanNumber,
+        BSTR bstrFilter,
+        long nIntensityCutoffType,
+        long nIntensityCutoffValue,
+        long nMaxNumberOfPeaks,
+        long bCentroidResult,
+        double * pdCentroidPeakWidth,
+        VARIANT * pvarMassList,
+        VARIANT * pvarPeakFlags,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetMassListFromRT (
+        double * pdRT,
+        BSTR bstrFilter,
+        long nIntensityCutoffType,
+        long nIntensityCutoffValue,
+        long nMaxNumberOfPeaks,
+        long bCentroidResult,
+        double * pdCentroidPeakWidth,
+        VARIANT * pvarMassList,
+        VARIANT * pvarPeakFlags,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetNextMassListFromScanNum (
+        long * pnScanNumber,
+        BSTR bstrFilter,
+        long nIntensityCutoffType,
+        long nIntensityCutoffValue,
+        long nMaxNumberOfPeaks,
+        long bCentroidResult,
+        double * pdCentroidPeakWidth,
+        VARIANT * pvarMassList,
+        VARIANT * pvarPeakFlags,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetPrevMassListFromScanNum (
+        long * pnScanNumber,
+        BSTR bstrFilter,
+        long nIntensityCutoffType,
+        long nIntensityCutoffValue,
+        long nMaxNumberOfPeaks,
+        long bCentroidResult,
+        double * pdCentroidPeakWidth,
+        VARIANT * pvarMassList,
+        VARIANT * pvarPeakFlags,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall IsProfileScanForScanNum (
+        long nScanNumber,
+        long * pbIsProfileScan ) = 0;
+      virtual HRESULT __stdcall IsCentroidScanForScanNum (
+        long nScanNumber,
+        long * pbIsCentroidScan ) = 0;
+      virtual HRESULT __stdcall GetScanHeaderInfoForScanNum (
+        long nScanNumber,
+        long * pnNumPackets,
+        double * pdStartTime,
+        double * pdLowMass,
+        double * pdHighMass,
+        double * pdTIC,
+        double * pdBasePeakMass,
+        double * pdBasePeakIntensity,
+        long * pnNumChannels,
+        long * pbUniformTime,
+        double * pdFrequency ) = 0;
+      virtual HRESULT __stdcall GetStatusLogForScanNum (
+        long nScanNumber,
+        double * pdStatusLogRT,
+        VARIANT * pvarLabels,
+        VARIANT * pvarValues,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetStatusLogForRT (
+        double * pdRT,
+        VARIANT * pvarLabels,
+        VARIANT * pvarValues,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetStatusLogLabelsForScanNum (
+        long nScanNumber,
+        double * pdStatusLogRT,
+        VARIANT * pvarLabels,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetStatusLogLabelsForRT (
+        double * pdRT,
+        VARIANT * pvarLabels,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetStatusLogValueForScanNum (
+        long nScanNumber,
+        BSTR bstrLabel,
+        double * pdStatusLogRT,
+        VARIANT * pvarValue ) = 0;
+      virtual HRESULT __stdcall GetStatusLogValueForRT (
+        double * pdRT,
+        BSTR bstrLabel,
+        VARIANT * pvarValue ) = 0;
+      virtual HRESULT __stdcall GetTrailerExtraForScanNum (
+        long nScanNumber,
+        VARIANT * pvarLabels,
+        VARIANT * pvarValues,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetTrailerExtraForRT (
+        double * pdRT,
+        VARIANT * pvarLabels,
+        VARIANT * pvarValues,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetTrailerExtraLabelsForScanNum (
+        long nScanNumber,
+        VARIANT * pvarLabels,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetTrailerExtraLabelsForRT (
+        double * pdRT,
+        VARIANT * pvarLabels,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetTrailerExtraValueForScanNum (
+        long nScanNumber,
+        BSTR bstrLabel,
+        VARIANT * pvarValue ) = 0;
+      virtual HRESULT __stdcall GetTrailerExtraValueForRT (
+        double * pdRT,
+        BSTR bstrLabel,
+        VARIANT * pvarValue ) = 0;
+      virtual HRESULT __stdcall GetErrorLogItem (
+        long nItemNumber,
+        double * pdRT,
+        BSTR * pbstrErrorMessage ) = 0;
+      virtual HRESULT __stdcall GetTuneData (
+        long nSegmentNumber,
+        VARIANT * pvarLabels,
+        VARIANT * pvarValues,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetNumInstMethods (
+        long * pnNumInstMethods ) = 0;
+      virtual HRESULT __stdcall GetInstMethod (
+        long nInstMethodItem,
+        BSTR * pbstrInstMethod ) = 0;
+      virtual HRESULT __stdcall GetChroData (
+        long nChroType1,
+        long nChroOperator,
+        long nChroType2,
+        BSTR bstrFilter,
+        BSTR bstrMassRanges1,
+        BSTR bstrMassRanges2,
+        double dDelay,
+        double * pdStartTime,
+        double * pdEndTime,
+        long nSmoothingType,
+        long nSmoothingValue,
+        VARIANT * pvarChroData,
+        VARIANT * pvarPeakFlags,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall RefreshViewOfFile ( ) = 0;
+      virtual HRESULT __stdcall GetTuneDataValue (
+        long nSegmentNumber,
+        BSTR bstrLabel,
+        VARIANT * pvarValue ) = 0;
+      virtual HRESULT __stdcall GetTuneDataLabels (
+        long nSegmentNumber,
+        VARIANT * pvarLabels,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetInstName (
+        BSTR * pbstrInstName ) = 0;
+      virtual HRESULT __stdcall GetInstModel (
+        BSTR * pbstrInstModel ) = 0;
+      virtual HRESULT __stdcall GetInstSerialNumber (
+        BSTR * pbstrInstSerialNumber ) = 0;
+      virtual HRESULT __stdcall GetInstSoftwareVersion (
+        BSTR * pbstrInstSoftwareVersion ) = 0;
+      virtual HRESULT __stdcall GetInstHardwareVersion (
+        BSTR * pbstrInstHardwareVersion ) = 0;
+      virtual HRESULT __stdcall GetInstFlags (
+        BSTR * pbstrInstFlags ) = 0;
+      virtual HRESULT __stdcall GetInstNumChannelLabels (
+        long * pnInstNumChannelLabels ) = 0;
+      virtual HRESULT __stdcall GetInstChannelLabel (
+        long nChannelLabelNumber,
+        BSTR * pbstrInstChannelLabel ) = 0;
+      virtual HRESULT __stdcall GetNumberOfControllersOfType (
+        long nControllerType,
+        long * pnNumControllersOfType ) = 0;
+      virtual HRESULT __stdcall GetAverageMassList (
+        long * pnFirstAvgScanNumber,
+        long * pnLastAvgScanNumber,
+        long * pnFirstBkg1ScanNumber,
+        long * pnLastBkg1ScanNumber,
+        long * pnFirstBkg2ScanNumber,
+        long * pnLastBkg2ScanNumber,
+        BSTR bstrFilter,
+        long nIntensityCutoffType,
+        long nIntensityCutoffValue,
+        long nMaxNumberOfPeaks,
+        long bCentroidResult,
+        double * pdCentroidPeakWidth,
+        VARIANT * pvarMassList,
+        VARIANT * pvarPeakFlags,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall IsThereMSData (
+        long * pbMSData ) = 0;
+      virtual HRESULT __stdcall HasExpMethod (
+        long * pbMethod ) = 0;
+      virtual HRESULT __stdcall GetFilterMassPrecision (
+        long * pnFilterMassPrecision ) = 0;
+      virtual HRESULT __stdcall GetStatusLogForPos (
+        long nPos,
+        VARIANT * pvarRT,
+        VARIANT * pvarValue,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetStatusLogPlottableIndex (
+        VARIANT * pvarIndex,
+        VARIANT * pvarValues,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetInstMethodNames (
+        long * pnNumInstMethods,
+        VARIANT * pvarNames ) = 0;
+      virtual HRESULT __stdcall SetMassTolerance (
+        long bUseUserDefined,
+        double dMassTolerance,
+        long nUnits ) = 0;
+      virtual HRESULT __stdcall GetChros (
+        long nNumChros,
+        double * pdStartTime,
+        double * pdEndTime,
+        VARIANT * pvarChroParamsArray,
+        VARIANT * pvarChroDataSizeArray,
+        VARIANT * pvarChroDataArray,
+        VARIANT * pvarPeakFlagsArray ) = 0;
+};
+
+struct __declspec(uuid("55a25ff7-f437-471f-909a-d7f2b5930805"))
+IXRawfile2 : IXRawfile
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall GetLabelData (
+        VARIANT * pvarLabels,
+        VARIANT * pvarFlags,
+        long * pnScanNumber ) = 0;
+      virtual HRESULT __stdcall GetNoiseData (
+        VARIANT * pvarNoisePacket,
+        long * pnScanNumber ) = 0;
+      virtual HRESULT __stdcall GetSegmentedMassListFromRT (
+        double * pdRT,
+        BSTR bstrFilter,
+        long nIntensityCutoffType,
+        long nIntensityCutoffValue,
+        long nMaxNumberOfPeaks,
+        long bCentroidResult,
+        double * pdCentroidPeakWidth,
+        VARIANT * pvarMassList,
+        VARIANT * pvarPeakFlags,
+        long * pnArraySize,
+        VARIANT * pvarSegments,
+        long * pnNumSegments,
+        VARIANT * pvarLowHighMassRange ) = 0;
+      virtual HRESULT __stdcall GetSegmentedMassListFromScanNum (
+        long * pnScanNumber,
+        BSTR bstrFilter,
+        long nIntensityCutoffType,
+        long nIntensityCutoffValue,
+        long nMaxNumberOfPeaks,
+        long bCentroidResult,
+        double * pdCentroidPeakWidth,
+        VARIANT * pvarMassList,
+        VARIANT * pvarPeakFlags,
+        long * pnArraySize,
+        VARIANT * pvarSegments,
+        long * pnNumSegments,
+        VARIANT * pvarLowHighMassRange ) = 0;
+      virtual HRESULT __stdcall GetScanEventForScanNum (
+        long nScanNumber,
+        BSTR * pbstrScanEvent ) = 0;
+      virtual HRESULT __stdcall GetSeqRowUserTextEx (
+        long nIndex,
+        BSTR * pbstrUserText ) = 0;
+      virtual HRESULT __stdcall GetSeqRowBarcode (
+        BSTR * pbstrBarcode ) = 0;
+      virtual HRESULT __stdcall GetSeqRowBarcodeStatus (
+        long * pnBarcodeStatus ) = 0;
+};
+
+struct __declspec(uuid("19a00b1e-1559-42b1-9a46-08a5e599edee"))
+IXRawfile3 : IXRawfile2
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall GetMassListRangeFromScanNum (
+        long * pnScanNumber,
+        BSTR bstrFilter,
+        long nIntensityCutoffType,
+        long nIntensityCutoffValue,
+        long nMaxNumberOfPeaks,
+        long bCentroidResult,
+        double * pdCentroidPeakWidth,
+        VARIANT * pvarMassList,
+        VARIANT * pvarPeakFlags,
+        LPWSTR szMassRange1,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetMassListRangeFromRT (
+        double * pdRT,
+        BSTR bstrFilter,
+        long nIntensityCutoffType,
+        long nIntensityCutoffValue,
+        long nMaxNumberOfPeaks,
+        long bCentroidResult,
+        double * pdCentroidPeakWidth,
+        VARIANT * pvarMassList,
+        VARIANT * pvarPeakFlags,
+        LPWSTR szMassRange1,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetNextMassListRangeFromScanNum (
+        long * pnScanNumber,
+        BSTR bstrFilter,
+        long nIntensityCutoffType,
+        long nIntensityCutoffValue,
+        long nMaxNumberOfPeaks,
+        long bCentroidResult,
+        double * pdCentroidPeakWidth,
+        VARIANT * pvarMassList,
+        VARIANT * pvarPeakFlags,
+        LPWSTR szMassRange1,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetPrevMassListRangeFromScanNum (
+        long * pnScanNumber,
+        BSTR bstrFilter,
+        long nIntensityCutoffType,
+        long nIntensityCutoffValue,
+        long nMaxNumberOfPeaks,
+        long bCentroidResult,
+        double * pdCentroidPeakWidth,
+        VARIANT * pvarMassList,
+        VARIANT * pvarPeakFlags,
+        LPWSTR szMassRange1,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetPrecursorInfoFromScanNum (
+        long nScanNumber,
+        VARIANT * pvarPrecursorInfos,
+        long * pnArraySize ) = 0;
+};
+
+struct __declspec(uuid("e7cf6760-11cd-4260-b5b0-fce2ad97547b"))
+IXRawfile4 : IXRawfile3
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall ExtractInstMethodFromRaw (
+        BSTR szInstMethodFileName ) = 0;
+      virtual HRESULT __stdcall GetSegmentAndEventForScanNum (
+        long nScanNumber,
+        long * pnSegment,
+        long * pnScanEvent ) = 0;
+      virtual HRESULT __stdcall GetMassPrecisionEstimate (
+        long lScanNumber,
+        VARIANT * pvarMassList,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetActivationTypeForScanNum (
+        long nScan,
+        long lMSOrder,
+        long * pnActivationType ) = 0;
+      virtual HRESULT __stdcall GetDetectorTypeForScanNum (
+        long nScan,
+        long * pnDetectorType ) = 0;
+      virtual HRESULT __stdcall GetMassAnalyzerTypeForScanNum (
+        long nScan,
+        long * pnMassAnalyzerType ) = 0;
+      virtual HRESULT __stdcall GetMSOrderForScanNum (
+        long nScan,
+        long * pnMSOrder ) = 0;
+      virtual HRESULT __stdcall GetPrecursorMassForScanNum (
+        long nScan,
+        long lMSOrder,
+        double * pdMass ) = 0;
+      virtual HRESULT __stdcall GetScanTypeForScanNum (
+        long nScan,
+        long * pnScanType ) = 0;
+      virtual HRESULT __stdcall GetAveragedMassSpectrum (
+        long * pnScanNumbers,
+        long nScansToAverage,
+        VARIANT_BOOL bCentroidResult,
+        VARIANT * pvarMassList,
+        VARIANT * pvarPeakFlags,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetSummedMassSpectrum (
+        long * pnScanNumbers,
+        long nScansToSum,
+        VARIANT_BOOL bCentroidResult,
+        VARIANT * pvarMassList,
+        VARIANT * pvarPeakFlags,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetAveragedLabelData (
+        long * pnScanNumbers,
+        long nScansToAverage,
+        VARIANT * pvarMassList,
+        VARIANT * pvarPeakFlags,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall FindPrecursorMassInFullScan (
+        long nScan,
+        long * pnMasterScan,
+        double * pdFoundMass,
+        double * pdHeaderMass,
+        long * pnChargeState ) = 0;
+      virtual HRESULT __stdcall Version (
+        long * pnMajorVersion,
+        long * pnMinorVersion,
+        long * pnSubMinorVersion,
+        long * nBuildNumber ) = 0;
+};
+
+struct __declspec(uuid("06f53853-e43c-4f30-9e5f-d1b3668f0c3c"))
+IXRawfile5 : IXRawfile4
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall GetNumberOfMassRangesFromScanNum (
+        int nScanNumber,
+        long * pnNumMassRanges ) = 0;
+      virtual HRESULT __stdcall GetFullMSOrderPrecursorDataFromScanNum (
+        int nScanNumber,
+        long nMSOrder,
+        VARIANT * pvarFullMSOrderPrecursorInfo ) = 0;
+      virtual HRESULT __stdcall GetMassRangeFromScanNum (
+        long nScanNumber,
+        long nMassRangeIndex,
+        double * pdMassRangeLowValue,
+        double * pdMassRangeHighValue ) = 0;
+      virtual HRESULT __stdcall GetCycleNumberFromScanNumber (
+        long nScanNumber,
+        long * pnCycleNumber ) = 0;
+      virtual HRESULT __stdcall GetCompoundNameFromScanNum (
+        int nScanNumber,
+        BSTR * pbstrCompoundName ) = 0;
+      virtual HRESULT __stdcall GetUniqueCompoundNames (
+        VARIANT * pvarCompoundNamesArray,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetChroByCompoundName (
+        long nChroType1,
+        long nChroOperator,
+        long nChroType2,
+        VARIANT * pCompoundNames,
+        BSTR bstrMassRanges1,
+        BSTR bstrMassRanges2,
+        double dDelay,
+        double * pdStartTime,
+        double * pdEndTime,
+        long nSmoothingType,
+        long nSmoothingValue,
+        VARIANT * pvarChroData,
+        VARIANT * pvarPeakFlags,
+        long * pnArraySize ) = 0;
+      virtual HRESULT __stdcall GetMSXMultiplexValueFromScanNum (
+        long nScanNumber,
+        long * pnMSXValue ) = 0;
+      virtual HRESULT __stdcall GetAValueFromScanNum (
+        long nScanNumber,
+        long * pnAValue ) = 0;
+      virtual HRESULT __stdcall GetBValueFromScanNum (
+        long nScanNumber,
+        long * pnBValue ) = 0;
+      virtual HRESULT __stdcall GetFValueFromScanNum (
+        long nScanNumber,
+        long * pnFValue ) = 0;
+      virtual HRESULT __stdcall GetKValueFromScanNum (
+        long nScanNumber,
+        long * pnKValue ) = 0;
+      virtual HRESULT __stdcall GetRValueFromScanNum (
+        long nScanNumber,
+        long * pnRValue ) = 0;
+      virtual HRESULT __stdcall GetVValueFromScanNum (
+        long nScanNumber,
+        long * pnVValue ) = 0;
+      virtual HRESULT __stdcall GetNumberOfMassCalibratorsFromScanNum (
+        int nScanNumber,
+        long * pnNumMassCalibrators ) = 0;
+      virtual HRESULT __stdcall GetMassCalibrationValueFromScanNum (
+        long nScanNumber,
+        long nMassCalibrationndex,
+        double * pnMassCalibrationValue ) = 0;
+      virtual HRESULT __stdcall GetMassTolerance (
+        long * bUserDefined,
+        double * dMassTolerance,
+        long * nUnits ) = 0;
+      virtual HRESULT __stdcall GetNumberOfSourceFragmentsFromScanNum (
+        long nScanNumber,
+        long * pnNumSourceFragments ) = 0;
+      virtual HRESULT __stdcall GetSourceFragmentValueFromScanNum (
+        long nScanNumber,
+        long nSourceFragmentIndex,
+        double * pdSourceFragmentValue ) = 0;
+      virtual HRESULT __stdcall GetNumberOfSourceFragmentationMassRangesFromScanNum (
+        long nScanNumber,
+        long * pnNumSourceFragmentationMassRanges ) = 0;
+      virtual HRESULT __stdcall GetSourceFragmentationMassRangeFromScanNum (
+        long nScanNumber,
+        long nSourceFragmentMassRangeIndex,
+        double * pdSourceFragmentRangeLowValue,
+        double * pdSourceFragmentRangeHighValue ) = 0;
+      virtual HRESULT __stdcall GetNumberOfMSOrdersFromScanNum (
+        int nScanNumber,
+        long * pnNumMSOrders ) = 0;
+      virtual HRESULT __stdcall GetIsolationWidthForScanNum (
+        long nScanNumber,
+        long nMSOrder,
+        double * pdIsolationWidth ) = 0;
+      virtual HRESULT __stdcall GetCollisionEnergyForScanNum (
+        long nScanNumber,
+        long nMSOrder,
+        double * pdCollisionEnergy ) = 0;
+      virtual HRESULT __stdcall GetPrecursorRangeForScanNum (
+        long nScanNumber,
+        long nMSOrder,
+        double * pdFirstPrecursorMass,
+        double * pdLastPrecursorMass,
+        long * pbIsValid ) = 0;
+      virtual HRESULT __stdcall GetAllMSOrderData (
+        long nScanNumber,
+        VARIANT * pvarDoubleData,
+        VARIANT * pvarFlagsData,
+        long * pnNumberOfMSOrders ) = 0;
+      virtual HRESULT __stdcall IsQExactive (
+        long * pVal ) = 0;
+      virtual HRESULT __stdcall IncludeReferenceAndExceptionData (
+        long value ) = 0;
+};
+
+enum MS_DataTypes
+{
+    MS_DataTypes_NULL = 0,
+    MS_DataTypes_CHAR = 1,
+    MS_DataTypes_TRUEFALSE = 2,
+    MS_DataTypes_YESNO = 3,
+    MS_DataTypes_ONOFF = 4,
+    MS_DataTypes_UCHAR = 5,
+    MS_DataTypes_SHORT = 6,
+    MS_DataTypes_USHORT = 7,
+    MS_DataTypes_LONG = 8,
+    MS_DataTypes_ULONG = 9,
+    MS_DataTypes_FLOAT = 10,
+    MS_DataTypes_DOUBLE = 11,
+    MS_DataTypes_CHAR_STRING = 12,
+    MS_DataTypes_WCHAR_STRING = 13
+};
+
+struct __declspec(uuid("55ea38b7-5419-4be4-9198-3e4d78e64632"))
+IXVirMS : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall Create (
+        /*[in]*/ LPWSTR szFileName ) = 0;
+      virtual HRESULT __stdcall Close ( ) = 0;
+      virtual HRESULT __stdcall GetFileName (
+        /*[in]*/ BSTR * pbstrFileName ) = 0;
+      virtual HRESULT __stdcall get_IsError (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall get_ErrorCode (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall get_IsValid (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall WriteInstID (
+        /*[in]*/ LPWSTR szName,
+        /*[in]*/ LPWSTR szModel,
+        /*[in]*/ LPWSTR szSerialNumber,
+        /*[in]*/ LPWSTR szSoftwareRev,
+        /*[in]*/ LPWSTR ExpType ) = 0;
+      virtual HRESULT __stdcall WriteRunHeaderInfo (
+        /*[in]*/ double dExpectedRunTime,
+        /*[in]*/ double dMassResolution,
+        /*[in]*/ LPWSTR szComment1,
+        /*[in]*/ LPWSTR szComment2 ) = 0;
+      virtual HRESULT __stdcall WriteInstData (
+        /*[in]*/ unsigned char * pcData,
+        /*[in]*/ long nDataSize,
+        /*[in]*/ enum MS_PacketTypes eType ) = 0;
+      virtual HRESULT __stdcall SetTrailerHeaderNumFields (
+        /*[in]*/ long nFields ) = 0;
+      virtual HRESULT __stdcall SetTrailerHeaderField (
+        /*[in]*/ long nIdx,
+        /*[in]*/ LPWSTR szLabel,
+        /*[in]*/ enum MS_DataTypes eDataType,
+        /*[in]*/ long nPrecision ) = 0;
+      virtual HRESULT __stdcall WriteTrailerHeader ( ) = 0;
+      virtual HRESULT __stdcall SetStatusLogHeaderNumFields (
+        long nFields ) = 0;
+      virtual HRESULT __stdcall SetStatusLogHeaderField (
+        /*[in]*/ long nIdx,
+        /*[in]*/ LPWSTR szLabel,
+        /*[in]*/ enum MS_DataTypes eDataType,
+        /*[in]*/ long nPrecision ) = 0;
+      virtual HRESULT __stdcall WriteStatusLogHeader ( ) = 0;
+      virtual HRESULT __stdcall SetTuneDataHeaderNumFields (
+        long nFields ) = 0;
+      virtual HRESULT __stdcall SetTuneDataHeaderField (
+        /*[in]*/ long nIdx,
+        /*[in]*/ LPWSTR szLabel,
+        /*[in]*/ enum MS_DataTypes eDataType,
+        /*[in]*/ long nPrecision ) = 0;
+      virtual HRESULT __stdcall WriteTuneDataHeader ( ) = 0;
+      virtual HRESULT __stdcall WriteTuneData (
+        /*[in]*/ unsigned char * pcData ) = 0;
+      virtual HRESULT __stdcall WriteStatusLog (
+        /*[in]*/ float fTime,
+        /*[in]*/ unsigned char * pcData ) = 0;
+      virtual HRESULT __stdcall WriteTrailer (
+        /*[in]*/ unsigned char * pcData ) = 0;
+      virtual HRESULT __stdcall InitializeScanEvent (
+        /*[in]*/ struct MS_ScanEvent * pScanEvent ) = 0;
+      virtual HRESULT __stdcall InitMethodScanEvents ( ) = 0;
+      virtual HRESULT __stdcall SetMethodScanEvent (
+        /*[in]*/ long nSegment,
+        /*[in]*/ long nScanEvent,
+        /*[in]*/ struct MS_ScanEvent * pScanEvent ) = 0;
+      virtual HRESULT __stdcall WriteMethodScanEvents ( ) = 0;
+      virtual HRESULT __stdcall WriteScanIndex (
+        /*[in]*/ struct MS_ScanIndex * pScanIndex,
+        /*[in]*/ struct MS_ScanEvent * pScanEvent ) = 0;
+      virtual HRESULT __stdcall WriteInstData2 (
+        /*[in]*/ long nNumPkts,
+        /*[in]*/ struct MS_DataPeak * pPackets ) = 0;
+      virtual HRESULT __stdcall InitializeScanIndex (
+        /*[in]*/ long nScanIndexPosition,
+        /*[in]*/ enum MS_PacketTypes eType ) = 0;
+      virtual HRESULT __stdcall WriteScanIndex2 (
+        /*[in]*/ struct MS_ScanIndex * pScanIndex ) = 0;
+};
+
+struct __declspec(uuid("7ff032a3-fb2a-46ef-a579-039da67c0aaa"))
+IXVirMS64 : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall WriteScanIndex_64 (
+        /*[in]*/ struct MS_ScanIndex64 * pScanIndex,
+        /*[in]*/ struct MS_ScanEvent * pScanEvent ) = 0;
+      virtual HRESULT __stdcall WriteScanIndex2_64 (
+        /*[in]*/ struct MS_ScanIndex64 * pScanIndex ) = 0;
+};
+
+#pragma pack(push, 8)
+
+struct __declspec(uuid("bfec2952-90cb-40e5-93af-90c797d944a8"))
+MS_ScanDataStruct
+{
+    double dMass;
+    double dMassAccyPPM;
+    double dMassAccyMMU;
+    double dIntensity;
+    double dResolution;
+};
+
+#pragma pack(pop)
+
+struct __declspec(uuid("796cb3fe-c696-4afe-b719-18246f38a740"))
+IXVirUV : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall Create (
+        /*[in]*/ LPWSTR szFileName ) = 0;
+      virtual HRESULT __stdcall Close ( ) = 0;
+      virtual HRESULT __stdcall GetFileName (
+        BSTR * pbstrFileName ) = 0;
+      virtual HRESULT __stdcall get_IsError (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall get_ErrorCode (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall get_IsValid (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall WriteErrorLog (
+        /*[in]*/ float fTime,
+        /*[in]*/ LPWSTR szError ) = 0;
+      virtual HRESULT __stdcall WriteInstID (
+        /*[in]*/ LPWSTR szName,
+        /*[in]*/ LPWSTR szModel,
+        /*[in]*/ LPWSTR szSerialNumber,
+        /*[in]*/ LPWSTR szSoftwareRev,
+        /*[in]*/ LPWSTR szLabel1,
+        /*[in]*/ LPWSTR szLabel2,
+        /*[in]*/ LPWSTR szLabel3,
+        /*[in]*/ LPWSTR szLabel4 ) = 0;
+      virtual HRESULT __stdcall WriteRunHeaderInfo (
+        double dExpectedRunTime ) = 0;
+      virtual HRESULT __stdcall WriteInstData (
+        /*[in]*/ unsigned char * pcData,
+        /*[in]*/ long nDataSize,
+        /*[in]*/ enum MS_PacketTypes eType,
+        /*[in]*/ long nDataLen ) = 0;
+      virtual HRESULT __stdcall WriteScanIndex (
+        /*[in]*/ struct MS_UVScanIndex * pScanIndex ) = 0;
+};
+
+struct __declspec(uuid("1d23188d-53fe-4c25-b032-dc70acdbdc02"))
+MSFileReader_XRawfile;
+    // [ default ] interface IXRawfile
+
+struct __declspec(uuid("6f2f5bd9-1c11-4cbc-af0d-6de0e3b06e3b"))
+MSFileReader_XVirMS;
+    // [ default ] interface IXVirMS
+    // interface IXVirMS64
+
+struct __declspec(uuid("b3db6431-a183-43f1-8bbd-f354064d9041"))
+MSFileReader_XVirUV;
+    // [ default ] interface IXVirUV
+
+//
+// Named GUID constants initializations
+//
+
+extern "C" const GUID __declspec(selectany) LIBID_MSFileReaderLib =
+    {0xf0c5f3e3,0x4f2a,0x443e,{0xa7,0x4d,0x0a,0xab,0xe3,0x23,0x74,0x94}};
+extern "C" const GUID __declspec(selectany) IID_IXRawfile =
+    {0x11b488a0,0x69b1,0x41fc,{0xa6,0x60,0xfe,0x8d,0xf2,0xa3,0x1f,0x5b}};
+extern "C" const GUID __declspec(selectany) IID_IXRawfile2 =
+    {0x55a25ff7,0xf437,0x471f,{0x90,0x9a,0xd7,0xf2,0xb5,0x93,0x08,0x05}};
+extern "C" const GUID __declspec(selectany) IID_IXRawfile3 =
+    {0x19a00b1e,0x1559,0x42b1,{0x9a,0x46,0x08,0xa5,0xe5,0x99,0xed,0xee}};
+extern "C" const GUID __declspec(selectany) IID_IXRawfile4 =
+    {0xe7cf6760,0x11cd,0x4260,{0xb5,0xb0,0xfc,0xe2,0xad,0x97,0x54,0x7b}};
+extern "C" const GUID __declspec(selectany) IID_IXRawfile5 =
+    {0x06f53853,0xe43c,0x4f30,{0x9e,0x5f,0xd1,0xb3,0x66,0x8f,0x0c,0x3c}};
+extern "C" const GUID __declspec(selectany) IID_IXVirMS =
+    {0x55ea38b7,0x5419,0x4be4,{0x91,0x98,0x3e,0x4d,0x78,0xe6,0x46,0x32}};
+extern "C" const GUID __declspec(selectany) IID_IXVirMS64 =
+    {0x7ff032a3,0xfb2a,0x46ef,{0xa5,0x79,0x03,0x9d,0xa6,0x7c,0x0a,0xaa}};
+extern "C" const GUID __declspec(selectany) IID_IXVirUV =
+    {0x796cb3fe,0xc696,0x4afe,{0xb7,0x19,0x18,0x24,0x6f,0x38,0xa7,0x40}};
+extern "C" const GUID __declspec(selectany) CLSID_MSFileReader_XRawfile =
+    {0x1d23188d,0x53fe,0x4c25,{0xb0,0x32,0xdc,0x70,0xac,0xdb,0xdc,0x02}};
+extern "C" const GUID __declspec(selectany) CLSID_MSFileReader_XVirMS =
+    {0x6f2f5bd9,0x1c11,0x4cbc,{0xaf,0x0d,0x6d,0xe0,0xe3,0xb0,0x6e,0x3b}};
+extern "C" const GUID __declspec(selectany) CLSID_MSFileReader_XVirUV =
+    {0xb3db6431,0xa183,0x43f1,{0x8b,0xbd,0xf3,0x54,0x06,0x4d,0x90,0x41}};
+
+#pragma pack(pop)

@@ -95,6 +95,7 @@ ThermoInterface::~ThermoInterface(void)
 {
 }
 
+#ifndef MZQT_XRAWFILE_WRAPPER
 void ThermoInterface::initInterface(void)
 {
   QStringList env = QProcess::systemEnvironment();
@@ -116,6 +117,12 @@ void ThermoInterface::initInterface(void)
 
   return;
 }
+#else
+void ThermoInterface::initInterface(void)
+{
+    //Do nothing, initilaization in constructor
+}
+#endif
 
 void ThermoInterface::initUVScan()
 {
@@ -180,7 +187,7 @@ bool ThermoInterface::setInputFile(const QString& filename)
     //Controllers
     for (int i = BEGIN_CONTROLLER_TYPE; i < END_CONTROLLER_TYPE; ++i) {
 
-      int numOfControllers = 0;
+      int_t numOfControllers = 0;
       xrawfile2_.GetNumberOfControllersOfType(i, numOfControllers);
       Debug::dbg(Debug::HIGH) << "number of controllers for type: " << i
           << " = " << numOfControllers << endl;
@@ -379,10 +386,17 @@ bool ThermoInterface::setInputFile(const QString& filename)
   }
   instrumentInfo_.ionSource_ = ionization;
 
+
   // get time from file
+#ifdef MZQT_XRAWFILE_WRAPPER
+  double date;
+  xrawfile2_.GetCreationDate(date);
+  timeStamp_ = QString("%1").arg(date);
+#else
   QDateTime date;
   xrawfile2_.GetCreationDate(date);
   timeStamp_ = date.toString();
+#endif
 
 #if 0
   QStringList filters;
@@ -534,10 +548,10 @@ Scan* ThermoInterface::getScan(void)
 
   Debug::dbg(Debug::VERY_HIGH) << "getting scan header info" << Debug::ENDL;
 
-  int numDataPoints = -1; // points in both the m/z and intensity arrays
+  int_t numDataPoints = -1; // points in both the m/z and intensity arrays
   double retentionTimeInMinutes = -1;
-  int channel; // unused
-  bool uniformTime; // unused
+  int_t channel; // unused
+  bool_t uniformTime; // unused
   double frequency; // unused
 
   xrawfile2_.GetScanHeaderInfoForScanNum(curScanNum_, numDataPoints,
@@ -588,7 +602,7 @@ Scan* ThermoInterface::getScan(void)
     // set up the parameters to read the scan
     // TODO make centroid parameter user customizable
     int dataPoints = 0;
-    int scanNum = curScanNum_;
+    int_t scanNum = curScanNum_;
     QString szFilter = curScan->thermoFilterLine_;
 
     // record centroiding info
@@ -606,7 +620,7 @@ Scan* ThermoInterface::getScan(void)
 
       Debug::dbg(Debug::VERY_HIGH) << "using get label data" << Debug::ENDL;
 
-      QList<double> masses, intensities;
+      double_container masses, intensities;
 
       xrawfile2_.GetLabelData(masses, intensities, scanNum);
 
@@ -636,8 +650,8 @@ Scan* ThermoInterface::getScan(void)
       //work around
       //call average function with only one scan since normal mass list call
       //doesn't seem to always works
-      QList<double> masses, intensities;
-      QList<int> scanNumbers;
+      double_container masses, intensities;
+      int_container scanNumbers;
       scanNumbers << scanNum;
       xrawfile2_.GetAveragedMassSpectrum(scanNumbers, centroidThisScan, masses,
                                          intensities);
@@ -715,6 +729,13 @@ void ThermoInterface::getPrecursorInfo(Scan& scan, long scanNumber,
   //save filterline param that may be useful for further processing
   scan.cidEnergy_ = filterLine.cidEnergy_;
   scan.cidParentMass_ = filterLine.cidParentMass_;
+
+  if(filterLine.msx_) {
+    scan.msx_ = true;
+    xrawfile2_.GetIsolationWidthForScanNum(scanNumber, 1, scan.isolationWindow_);
+    return;
+  }
+
 
   if (scanNumber == 1) {
 
@@ -868,7 +889,7 @@ void ThermoInterface::getPrecursorInfo(Scan& scan, long scanNumber,
     scan.precursorMZ_
         = filterLine.cidParentMass_[filterLine.cidParentMass_.size() - 1];
 
-    if (precursorMZ > 0 && fabs(precursorMZ - scan.precursorMZ_) <= 10.0) {
+    if (precursorMZ > 0 && fabs(precursorMZ - scan.precursorMZ_) <= 0.01) {
       // (note: this could only true if we tried and had sucess
       // with the monoisotopic call above.)
       // Sanity check to make sure mono mass is in ballpark of filter line mass.
@@ -882,7 +903,7 @@ void ThermoInterface::getPrecursorInfo(Scan& scan, long scanNumber,
       oldAPICount_++;
     }
     else {
-      Debug::dbg(Debug::VERY_HIGH) << "got higher accuracy mass" << Debug::ENDL;
+      Debug::dbg(Debug::VERY_HIGH) << "got low accuracy mass" << Debug::ENDL;
 
       // use the low-precision parent mass in the filter line
       inaccurateMasses_++;
@@ -980,7 +1001,7 @@ void ThermoInterface::getPrecursorInfo(Scan& scan, long scanNumber,
 
   //if( numDataPoints != 0 ) { // if this isn't an empty scan
 
-  QList<double> masses, intensities;
+  double_container masses, intensities;
 
   // set up the parameters to read the precursor scan
   QString szFilter = "!d"; // First previous not-dependent scan
@@ -992,7 +1013,7 @@ void ThermoInterface::getPrecursorInfo(Scan& scan, long scanNumber,
 
   // Debug::dbg(Debug::VERY_HIGH) << "reading scan " << curScanNum_ << endl;
 
-  int curScanNum = scanNumber;
+  int_t curScanNum = scanNumber;
 
   // the goal is to get the parent scan's info
   xrawfile2_.GetPrevMassListFromScanNum(curScanNum, szFilter, // filter
@@ -1058,10 +1079,10 @@ UVScan *ThermoInterface::getUVScan(void)
     }
   }
 
-  int numDataPoints = -1;
+  int_t numDataPoints = -1;
   double retentionTimeInMinutes = -1;
-  int channel = 0; // unused
-  bool uniformTime = false; // unused
+  int_t channel = 0; // unused
+  bool_t uniformTime = false; // unused
   double minObservedMZ = 0, maxObservedMZ = 0, frequency = 0,
       basePeakIntensity = 0, basePeakMZ = 0, totalIonCurrent = 0; // unused
 
@@ -1082,8 +1103,8 @@ UVScan *ThermoInterface::getUVScan(void)
 
     //call average function with only one scan since normal mass list call
     //doesn't seem to always works
-    QList<double> masses, intensities;
-    QList<int> scanNumbers;
+    double_container masses, intensities;
+    int_container scanNumbers;
     scanNumbers << curUVScanNum_;
     xrawfile2_.GetAveragedMassSpectrum(scanNumbers, false, masses, intensities);
 

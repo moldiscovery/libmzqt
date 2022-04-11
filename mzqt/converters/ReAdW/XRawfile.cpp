@@ -556,11 +556,6 @@ void XRawfile::getMassList(const char *methodName, int &scanNumber,
   masses.clear();
   intensities.clear();
 
-  typedef struct _datapeak {
-    double dMass;
-    double dIntensity;
-  } DataPeak;
-
   //get dispId
   DISPID dispid = dispIDofName(methodName, disp);
   assert(dispid != DISPID_UNKNOWN);

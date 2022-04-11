@@ -373,7 +373,7 @@ FilterLine::FilterLine() : segment_(-1), event_(-1),
             BOOL_UNDEF), detectorSet_(BOOL_UNDEF), turboScanOn_(BOOL_UNDEF),
             dependentActive_(BOOL_UNDEF), widebandOn_(BOOL_UNDEF),
             accurateMass_(ACCURATEMASS_UNDEF), scanType_(SCAN_UNDEF),
-            lockON_(BOOL_UNDEF), msLevel_(0), activationMethod_(ACTIVATION_UNDEF)
+            lockON_(BOOL_UNDEF), msLevel_(0), activationMethod_(ACTIVATION_UNDEF), msx_(false)
 {
     cidParentMass_.clear();
     cidEnergy_.clear();
@@ -733,6 +733,12 @@ bool FilterLine::parse(string filterLine)
       advance = false;
     }
 
+    //MSMS for an input mass range
+    if(w == "MSX") {
+      msx_ = true;
+      s >> w;
+    }
+
     // MS order
     if ((w.substr(0, 2) == "MS") && (w.length() >= 2)) {
         if (w.length() == 2) {
@@ -752,7 +758,8 @@ bool FilterLine::parse(string filterLine)
     // activation info
     // if msLevel >=2 there should be mass@energy pairs for each level >= 2
     if (msLevel_ > 1) {
-        int expectedPairs = msLevel_ - 1;
+        int expectedPairs = msx_ ? 2 : msLevel_ - 1;
+
         for (int i = 0; i < expectedPairs; ++i) {
             char c = w[0];
             int markerPos = w.find('@', 0);
