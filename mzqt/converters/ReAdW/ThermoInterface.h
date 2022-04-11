@@ -30,7 +30,11 @@
 #include "Exception.h"
 #include "InstrumentInterface.h"
 #include "FilterLine.h"
+#ifdef MZQT_XRAWFILE_WRAPPER
+#include "xrawfilewrapper.h"
+#else
 #include "XRawfile.h"
+#endif
 
 #ifdef __GNUC__
 #define MZQTDLL_API

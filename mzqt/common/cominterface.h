@@ -14,7 +14,7 @@
 #include <OCIdl.h>
 //#include <windef.h>
 
-#include <mzqt/common/Exception.h>
+#include "Exception.h"
 
 #define THROW_MZQT_IDISPATCHEXCEPT_HRES(hres) (throw mzqt::DispatchException(hres, "", __FILE__, __LINE__))
 #define THROW_MZQT_IDISPATCHEXCEPT_MSG(msg) (throw mzqt::DispatchException(msg, __FILE__, __LINE__))

@@ -14,6 +14,7 @@ add_library(mzqt
     common/IDispatch.cpp common/IDispatch.h
     common/InstrumentInfo.h
     common/InstrumentInterface.cpp common/InstrumentInterface.h
+    common/cominterface.cpp common/cominterface.h
     common/MSTypes.cpp common/MSTypes.h
     common/MSUtilities.cpp common/MSUtilities.h
     common/Scan.cpp common/Scan.h
@@ -22,8 +23,10 @@ add_library(mzqt
     common/UVSpoint.h
     common/UVTypes.h
     converters/ReAdW/FilterLine.cpp converters/ReAdW/FilterLine.h
-    converters/ReAdW/ThermoInterface.cpp converters/ReAdW/ThermoInterface.h
+    converters/ReAdW/ThermoInterface.cpp
+    converters/ReAdW/ThermoInterface.h
     converters/ReAdW/XRawfile.cpp converters/ReAdW/XRawfile.h
+    converters/ReAdW/xrawfilewrapper.cpp converters/ReAdW/xrawfilewrapper.h
     converters/massWolf/DACExScanStats.cpp converters/massWolf/DACExScanStats.h
     converters/massWolf/DACFunctionInfo.cpp converters/massWolf/DACFunctionInfo.h
     converters/massWolf/DACHeader.cpp converters/massWolf/DACHeader.h

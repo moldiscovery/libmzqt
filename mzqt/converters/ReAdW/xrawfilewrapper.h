@@ -5,6 +5,8 @@
 // Archivos de encabezado de Windows
 #include <Windows.h>
 
+#include <QVariant>
+
 // Archivos de encabezado en tiempo de ejecución de C
 #include <stdlib.h>
 #include <malloc.h>
@@ -12,8 +14,8 @@
 
 #include <tchar.h>
 #include "xrawfile2_x64.tlh"
-#include <mzqt/common/Exception.h>
-#include <mzqt/common/cominterface.h>
+#include "Exception.h"
+#include "cominterface.h"
 
 namespace mzqt {
 
