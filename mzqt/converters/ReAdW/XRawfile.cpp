@@ -28,7 +28,7 @@
 #include <iostream>
 #include <cassert>
 
-#include <mzqt/common/Debug.h>
+#include "Debug.h"
 
 #include <QUuid>
 #include <QString>
@@ -114,7 +114,7 @@ DISPID XRawfile::dispIDofName(const QByteArray &name, ::IDispatch *disp)
   if (dispid == DISPID_UNKNOWN) {
     // get the Dispatch ID from the object
     QString unicodeName = QLatin1String(name);
-    OLECHAR *names = (TCHAR*) unicodeName.utf16();
+    OLECHAR *names = (OLECHAR*) unicodeName.utf16();
     HRESULT hres = disp->GetIDsOfNames(IID_NULL, &names, 1,
                                        LOCALE_USER_DEFAULT, &dispid);
 

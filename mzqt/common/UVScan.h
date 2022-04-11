@@ -22,7 +22,7 @@
 #ifndef MZQT_UVSCAN_H_
 #define MZQT_UVSCAN_H_
 
-#include <mzqt/common/UVSpectrum.h>
+#include "UVSpectrum.h"
 
 #ifdef __GNUC__
 #define MZQTDLL_API

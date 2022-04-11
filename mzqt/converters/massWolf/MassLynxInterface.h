@@ -29,9 +29,9 @@
 #include <utility> // for pair
 #include <QString>
 
-#include <mzqt/common/InstrumentInterface.h>
-#include <mzqt/converters/MassWolf/DACSpectrum.h>
-#include <mzqt/converters/MassWolf/DACExScanStats.h>
+#include "InstrumentInterface.h"
+#include "DACSpectrum.h"
+#include "DACExScanStats.h"
 
 #ifdef __GNUC__
 #define MZQTDLL_API

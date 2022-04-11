@@ -19,7 +19,7 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <mzqt/common/UVSpectrum.h>
+#include "UVSpectrum.h"
 
 #ifdef USE_MMGR_MEMORY_CHECK
 #include <mmgr.h>

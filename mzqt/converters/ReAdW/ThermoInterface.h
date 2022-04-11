@@ -27,10 +27,10 @@
 
 #include <string>
 
-#include <mzqt/common/Exception.h>
-#include <mzqt/common/InstrumentInterface.h>
-#include <mzqt/converters/ReAdW/FilterLine.h>
-#include <mzqt/converters/ReAdW/XRawfile.h>
+#include "Exception.h"
+#include "InstrumentInterface.h"
+#include "FilterLine.h"
+#include "XRawfile.h"
 
 #ifdef __GNUC__
 #define MZQTDLL_API

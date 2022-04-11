@@ -28,7 +28,7 @@
 #include <string>
 #include <vector>
 
-#include <mzqt/common/MSTypes.h>
+#include "MSTypes.h"
 
 namespace mzqt {
 

@@ -36,10 +36,10 @@
 #include <algorithm>
 
 #include "MassLynxInterface.h"
-#include <mzqt/common/Debug.h>
-#include <mzqt/common/Scan.h>
-#include <mzqt/common/UVScan.h>
-#include <mzqt/common/MSUtilities.h>
+#include "Debug.h"
+#include "Scan.h"
+#include "UVScan.h"
+#include "MSUtilities.h"
 
 #include "DACProcessInfo.h"
 #include "DACFunctionInfo.h"

@@ -22,7 +22,7 @@
 #include <QString>
 #include <QAxObject>
 #include <winerror.h>
-#include <mzqt/common/IDispatch.h>
+#include "IDispatch.h"
 
 #ifdef USE_MMGR_MEMORY_CHECK
 #include <mmgr.h>

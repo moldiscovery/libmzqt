@@ -20,7 +20,7 @@
  */
 
 #include <QString>
-#include <mzqt/common/exception.h>
+#include "Exception.h"
 
 using namespace mzqt;
 

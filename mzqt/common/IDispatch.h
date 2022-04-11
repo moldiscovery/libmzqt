@@ -24,7 +24,7 @@
 
 #include <memory>
 #include <windows.h>
-#include <mzqt/common/Exception.h>
+#include "Exception.h"
 
 class QAxObject;
 class QString;

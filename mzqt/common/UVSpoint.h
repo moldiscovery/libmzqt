@@ -24,7 +24,7 @@
 
 #include <vector>
 
-#include <mzqt/common/UVTypes.h>
+#include "UVTypes.h"
 
 namespace mzqt {
 

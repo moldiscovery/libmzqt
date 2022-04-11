@@ -32,7 +32,7 @@
 #include <QString>
 
 #include "FilterLine.h"
-#include "common/MSUtilities.h"
+#include "MSUtilities.h"
 
 #ifdef USE_MMGR_MEMORY_CHECK
 #include <mmgr.h>

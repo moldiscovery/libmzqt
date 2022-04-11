@@ -34,10 +34,10 @@
 #include <QProcess>
 
 #include "ThermoInterface.h"
-#include <mzqt/common/Scan.h>
-#include <mzqt/common/UVScan.h>
-#include <mzqt/common/MSUtilities.h>
-#include <mzqt/common/Debug.h>
+#include "Scan.h"
+#include "UVScan.h"
+#include "MSUtilities.h"
+#include "Debug.h"
 
 #ifdef USE_MMGR_MEMORY_CHECK
 #include <mmgr.h>

@@ -23,7 +23,7 @@
 #ifndef MZQT_DACEXSCANSTATS_HPP_
 #define MZQT_DACEXSCANSTATS_HPP_
 
-#include <mzqt/common/IDispatch.h>
+#include "IDispatch.h"
 
 namespace mzqt {
 

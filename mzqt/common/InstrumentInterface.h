@@ -34,7 +34,7 @@
 #include <QString>
 #include <QObject>
 
-#include <mzqt/common/InstrumentInfo.h>
+#include "InstrumentInfo.h"
 
 namespace mzqt {
 

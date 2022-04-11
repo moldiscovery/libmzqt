@@ -24,7 +24,7 @@
 #include <QStringList>
 #include <QProcess>
 
-#include <mzqt/common/debug.h>
+#include "Debug.h"
 
 using namespace mzqt;
 

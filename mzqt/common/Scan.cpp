@@ -30,7 +30,7 @@
 #include <vector>
 #include <cmath>
 
-#include <mzqt/common/debug.h>
+#include "Debug.h"
 #include "Scan.h"
 
 

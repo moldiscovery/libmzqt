@@ -22,7 +22,7 @@
 #ifndef MZQT_DISPATCHDACPROCESSINFO_H_
 #define MZQT_DISPATCHDACPROCESSINFO_H_
 
-#include <mzqt/common/IDispatch.h>
+#include "IDispatch.h"
 
 class QString;
 

@@ -25,7 +25,7 @@
 
 #include <QString>
 
-#include <mzqt/common/IDispatch.h>
+#include "IDispatch.h"
 
 namespace mzqt {
 

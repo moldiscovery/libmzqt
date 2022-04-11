@@ -23,7 +23,7 @@
 #define MZQT_UVSPECTRUM_H_
 
 #include <iostream>
-#include <mzqt/common/UVSPoint.h>
+#include "UVSPoint.h"
 
 #ifdef __GNUC__
 #define MZQTDLL_API

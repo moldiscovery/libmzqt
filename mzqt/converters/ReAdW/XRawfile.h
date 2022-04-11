@@ -30,7 +30,7 @@
 
 #include <ocidl.h>
 
-#include <mzqt/common/IDispatch.h>
+#include "IDispatch.h"
 
 #ifdef __GNUC__
 #define MZQTDLL_API
