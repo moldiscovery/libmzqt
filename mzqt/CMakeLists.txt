@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 project(mzqt)
 
 set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
 
 #Find packages that will be used
 find_package(Qt5 COMPONENTS Core REQUIRED)
@@ -59,7 +60,7 @@ if(win32-msvc_x_)
 endif()
 
 if(memory_check_mmgr)
-    target_sources(mzqt PUBLIC
+    target_sources(mzqt PRIVATE
         mmgr/mmgr.cpp mmgr/mmgr.h
         mmgr/nommgr.h
     )

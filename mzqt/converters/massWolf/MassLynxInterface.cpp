@@ -775,3 +775,5 @@ UVScan *MassLynxInterface::getUVScan(void)
 
   return curScan;
 }
+
+#include "moc_MassLynxInterface.cpp"
