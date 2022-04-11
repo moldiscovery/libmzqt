@@ -64,7 +64,11 @@ namespace mzqt {
   class ThermoInterface: public InstrumentInterface {
   private:
 
+#ifdef MZQT_XRAWFILE_WRAPPER
+    XRawfileWrapper xrawfile2_;
+#else
     XRawfile xrawfile2_;
+#endif
 
     int IXRawfileVersion_; // which IXRawfile interface was initialized?
 

@@ -93,6 +93,7 @@ namespace mzqt {
         // for SRM scans only: instead of a scan range, we get q3 transition lists
         std::vector<double> transitionRangeMin_;
         std::vector<double> transitionRangeMax_;
+        bool msx_; //MSMS range mode
 
         FilterLine();
         ~FilterLine();

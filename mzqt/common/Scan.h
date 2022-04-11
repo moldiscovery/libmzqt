@@ -34,8 +34,10 @@
 
 #include "MSTypes.h"
 
-#ifdef __GNUC__
+#if defined(__GNUC__) || defined(MZQT_STATIC)
+#ifndef MZQTDLL_API
 #define MZQTDLL_API
+#endif
 #else
 #ifdef MZQTDLL_EXPORTS
 #ifndef MZQTDLL_API
@@ -153,6 +155,8 @@ namespace mzqt {
         bool sourceCIDOn_;
         std::vector<double> cidParentMass_;// one entry per ms level for level >= 2
         std::vector<double> cidEnergy_; // relative units; one entry per ms level for level >= 2
+        bool msx_ = false; // scan multiple scan ranges
+        double isolationWindow_ = 0.0; // define range of m/z taken on both side of the MSMSM input mz
 
         // for MassLynx_ scans only
         bool isMassLynx_;
@@ -171,10 +175,10 @@ namespace mzqt {
         int numDataPoints_;
 
     public:
-        MZQTDLL_API int getNumDataPoints(void) const
-        {
-            return numDataPoints_;
-        }
+        MZQTDLL_API void getMZArray(double **a) const;
+        MZQTDLL_API void getIntensityArray(double **a) const;
+
+        MZQTDLL_API int getNumDataPoints(void) const;
         MZQTDLL_API void setNumDataPoints(int numDataPoints); // (re)allocates arrays
         MZQTDLL_API void resetNumDataPoints(int numDataPoints); // set actual number of data points
 
