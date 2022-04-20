@@ -53,7 +53,7 @@ target_link_libraries(mzqt PUBLIC
     Qt5::AxContainer
 )
 
-if(win32-msvc_x_)
+if(WIN32 AND MSVC)
     target_compile_definitions(mzqt PUBLIC
         MZQTDLL_EXPORTS
     )
