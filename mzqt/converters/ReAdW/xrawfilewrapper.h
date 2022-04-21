@@ -6,6 +6,7 @@
 #include <Windows.h>
 
 #include <QVariant>
+#include <QVector>
 
 // Archivos de encabezado en tiempo de ejecución de C
 #include <stdlib.h>
