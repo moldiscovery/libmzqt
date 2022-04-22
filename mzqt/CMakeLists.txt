@@ -9,7 +9,7 @@ set(CMAKE_AUTOMOC ON)
 find_package(Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt5 COMPONENTS AxContainer REQUIRED)
 
-add_library(mzqt
+add_library(mzqt SHARED
     common/Debug.cpp
     common/Exception.cpp
     common/IDispatch.cpp
