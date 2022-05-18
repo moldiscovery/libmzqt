@@ -1,11 +1,8 @@
-#Cmake start parameters
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.18)
 project(mzqt)
 
-set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 
-#Find packages that will be used
 find_package(Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt5 COMPONENTS AxContainer REQUIRED)
 
@@ -46,8 +43,6 @@ target_compile_definitions(mzqt PUBLIC
     MZQTDLL_EXPORTS
 )
 
-#Link the libraries that we have add with find_package
-#This part must be done after add_library for this reason find_package and target_link_libraries are in different blocks
 target_link_libraries(mzqt PUBLIC
     Qt5::Core
     Qt5::AxContainer
