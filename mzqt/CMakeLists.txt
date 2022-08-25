@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.18)
 project(mzqt)
 
+option(MZQT_USE_MEMORY_CHECK_MMGR      "" OFF)
+option(MZQT_USE_XRAWFILE_WRAPPER       "" OFF)
+option(MZQT_USE_STATIC                 "" OFF)
+
 set(CMAKE_AUTOMOC ON)
 
 find_package(Qt5 COMPONENTS Core REQUIRED)
@@ -54,7 +58,7 @@ if(WIN32 AND MSVC)
     )
 endif()
 
-if(memory_check_mmgr)
+if(MZQT_USE_MEMORY_CHECK_MMGR)
     target_sources(mzqt PRIVATE
         mmgr/mmgr.cpp mmgr/mmgr.h
         mmgr/nommgr.h
@@ -69,7 +73,13 @@ if(memory_check_mmgr)
     )
 endif()
 
-if(mzqt)
+if(MZQT_USE_STATIC)
+    target_compile_definitions(mzqt PUBLIC
+        MZQT_STATIC
+    )
+endif()
+
+if(MZQT_USE_XRAWFILE_WRAPPER)
     target_compile_definitions(mzqt PUBLIC
         MZQT_XRAWFILE_WRAPPER
     )
