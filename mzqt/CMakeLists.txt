@@ -8,7 +8,10 @@ option(MZQT_USE_STATIC                 "" OFF)
 set(CMAKE_AUTOMOC ON)
 
 find_package(Qt5 COMPONENTS Core REQUIRED)
-find_package(Qt5 COMPONENTS AxContainer REQUIRED)
+
+if(WIN32)
+    find_package(Qt5 COMPONENTS AxContainer REQUIRED)
+endif()
 
 add_library(mzqt SHARED
     common/Debug.cpp
@@ -46,11 +49,17 @@ target_include_directories(mzqt PUBLIC
 target_compile_definitions(mzqt PUBLIC
     MZQTDLL_EXPORTS
 )
-
-target_link_libraries(mzqt PUBLIC
+if(WIN32)
+    target_link_libraries(mzqt PUBLIC
     Qt5::Core
     Qt5::AxContainer
 )
+else()
+target_link_libraries(mzqt PUBLIC
+    Qt5::Core
+)
+endif()
+
 
 if(WIN32 AND MSVC)
     target_compile_definitions(mzqt PUBLIC
