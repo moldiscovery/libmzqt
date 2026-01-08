@@ -576,6 +576,8 @@ Scan* ThermoInterface::getScan(void)
   // record the retention time
   curScan->retentionTimeInSec_ = retentionTimeInMinutes * 60.0;
 
+  xrawfile2_.GetTrailerExtraForScanNum(curScanNum_, curScan->customData_);
+
   // if ms level 2 or above, get precursor info
   if (curScan->msLevel_ > 1) {
 
@@ -734,6 +736,11 @@ void ThermoInterface::getPrecursorInfo(Scan& scan, long scanNumber,
     scan.msx_ = true;
     xrawfile2_.GetIsolationWidthForScanNum(scanNumber, 1, scan.isolationWindow_);
     return;
+  }
+  else {
+    if(scan.customData_.contains("MS2 Isolation Width:")) {
+      scan.isolationWindow_ = scan.customData_.value("MS2 Isolation Width:").toDouble() / 2.0;
+    }
   }
 
 

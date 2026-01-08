@@ -30,6 +30,8 @@
 
 
 #include <vector>
+#include <QHash>
+#include <QVariant>
 #include <QString>
 
 #include "MSTypes.h"
@@ -170,6 +172,8 @@ namespace mzqt {
         double threshold_;
 
         NativeScanRef nativeScanRef_;
+
+        QHash<QString, QVariant> customData_; // additional custom data, specific to the instrument or file format
 
     protected:
         int numDataPoints_;

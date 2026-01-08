@@ -722,3 +722,49 @@ void XRawfileWrapper::GetTrailerExtraValueForScanNum(long nScanNumber,
   ::VariantClear(&varValue);
   SysFreeString(bstrLabel); //free the string
 }
+
+/**
+ * @brief Retrieves trailer extra information for a specific scan number.
+ *
+ * This method queries the underlying raw file interface for additional trailer information
+ * associated with the given scan number. The retrieved label-value pairs are stored in the
+ * provided QHash reference, which is cleared before insertion.
+ *
+ * @param nScanNumber The scan number for which to retrieve trailer extra information.
+ * @param extras Reference to a QHash that will be populated with label-value pairs (QString, QVariant).
+ *
+ * @throws DispatchException if the underlying COM call fails.
+ * @throws XRawfileWrapperException if the number of labels does not match the number of values.
+ */
+void XRawfileWrapper::GetTrailerExtraForScanNum(long nScanNumber, QHash<QString,QVariant> &extras)
+{
+  extras.clear();
+
+  VARIANT varLabels;
+  ::VariantInit(&varLabels);
+  VARIANT varValues;
+  ::VariantInit(&varValues);
+  long arraySize=0;
+
+  HRESULT hr = iface()->GetTrailerExtraForScanNum(nScanNumber, &varLabels, &varValues, &arraySize);
+
+  checkForError();
+
+  if (FAILED(hr))
+    throw DispatchException(hr, "GetTrailerExtraForScanNum Failed");
+
+  QVariant labels = VARIANTToQVariant(varLabels, "");
+  QStringList extraLabels = labels.toStringList();
+  QVariant values = VARIANTToQVariant(varValues, "");
+  QVariantList extraValues = values.toList();
+
+  ::VariantClear(&varLabels);
+  ::VariantClear(&varValues);
+
+  if(extraLabels.size() != extraValues.size()) {
+    throw XRawfileWrapperException("GetTrailerExtraForScanNum: label and value size mismatch");
+  }
+  for(int i=0; i< extraLabels.size(); ++i) {
+    extras.insert(extraLabels.at(i), extraValues.at(i));
+  }
+}

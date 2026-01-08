@@ -81,6 +81,7 @@ public:
   void GetTrailerExtraValueForScanNum(long nScanNumber,
       const QString &szLabel, QVariant &value);
   void GetIsolationWidthForScanNum(long scanNum, long msOrder, double &isolationWidth);
+  void GetTrailerExtraForScanNum(long nScanNumber, QHash<QString,QVariant> &extras);
 
 protected:
   IXRawfile5 *iface_;
